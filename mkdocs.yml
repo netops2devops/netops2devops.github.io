@@ -1,21 +1,20 @@
 site_name: netops2devops
 site_url: https://netops2devops.net
 site_author: Kapil Agrawal
-
 theme:
   name: material
   palette:
-    # Palette toggle for light mode
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
       primary: black
       accent: amber
       toggle:
-        icon: material/brightness-1
-        name: Switch to dark mode
-     # Palette toggle for dark mode
-    - scheme: slate
+        icon: material/brightness-7
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: black
-      accent: amber
+      accent: red
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -28,7 +27,6 @@ theme:
     - header.autohide
     - content.code.copy
     - content.code.annotate
-
 plugins:
   - search
   - offline 
@@ -43,7 +41,6 @@ extra:
     - icon: fontawesome/brands/mastodon
       link: https://infosec.exchange/@netops2devops    
       name: netops2devops on github
-
 markdown_extensions:
   # Python Markdown
   - abbr
@@ -72,19 +69,19 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-
 nav:
-    - Home: index.md
+    - Home: home.md
     - About: about.md
     - How-To: How-To
     - Recommendations: 
         - recommendations/index.md
         - Books: recommendations/books
         - Podcasts: recommendations/podcasts
+        - Productivity: recommendations/productivity
     - Posts: 
         - posts/index.md
         - Security: posts/security
         - Networking: posts/networking
         - Infra-as-Code (IaC): posts/infra-as-code
+    
         
-      
