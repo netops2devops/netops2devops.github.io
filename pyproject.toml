@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "blog"
+version = "0.1.0"
+description = "my personal blog"
+authors = ["Kapil Agrawal"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mkdocs-material = "^9.1.16"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

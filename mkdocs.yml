@@ -1,0 +1,80 @@
+site_name: netops2devops blog
+site_url: https://netops2devops.net
+site_author: Kapil Agrawal
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/brightness-1
+        name: Switch to dark mode
+     # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - toc.follow
+    - toc.integrate 
+    - search.highlight  
+    - header.autohide
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+  - offline 
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/@netops2devops
+      name: netops2devops on twitter
+    - icon: fontawesome/brands/github
+      link: https://github.com/netops2devops
+      name: netops2devops on github
+    - icon: fontawesome/brands/mastodon
+      link: https://infosec.exchange/@netops2devops    
+      name: netops2devops on github
+
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+    - Home: index.md
+    - About: about.md
+    - How-To: How-To
+    - Cateogary: cateogary
