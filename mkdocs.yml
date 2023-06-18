@@ -1,4 +1,4 @@
-site_name: netops2devops blog
+site_name: netops2devops
 site_url: https://netops2devops.net
 site_author: Kapil Agrawal
 
@@ -77,4 +77,14 @@ nav:
     - Home: index.md
     - About: about.md
     - How-To: How-To
-    - Cateogary: cateogary
+    - Recommendations: 
+        - recommendations/index.md
+        - Books: recommendations/books
+        - Podcasts: recommendations/podcasts
+    - Posts: 
+        - posts/index.md
+        - Security: posts/security
+        - Networking: posts/networking
+        - Infra-as-Code (IaC): posts/infra-as-code
+        
+      
