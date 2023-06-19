@@ -72,16 +72,16 @@ markdown_extensions:
 nav:
     - Home: index.md
     - About: about.md
-    - How-To: How-To
+    - How-To: How-To/index.md
     - Recommendations: 
         - recommendations/index.md
-        - Books: recommendations/books
-        - Podcasts: recommendations/podcasts
-        - Productivity: recommendations/productivity
+        - Books: recommendations/books/index.md
+        - Podcasts: recommendations/podcasts/index.md
+        - Productivity: recommendations/productivity/index.md
     - Posts: 
         - posts/index.md
-        - Security: posts/security
-        - Networking: posts/networking
-        - Infra-as-Code (IaC): posts/infra-as-code
+        - Security: posts/security/index.md
+        - Networking: posts/networking/index.md
+        - Infra-as-Code (IaC): posts/infra-as-code/index.md
     
         
