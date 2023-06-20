@@ -1,6 +1,6 @@
 # netops2devops blog
 
-My personal blog built with Mkdocs and deployed via Github pages. 
+My personal blog built with Mkdocs and deployed via Github pages.
 
 ## Instructions
 

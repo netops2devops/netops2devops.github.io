@@ -4,7 +4,7 @@ site_author: Kapil Agrawal
 theme:
   name: material
   palette:
-    - media: "(prefers-color-scheme: light)"
+    - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: amber
@@ -29,7 +29,12 @@ theme:
     - content.code.annotate
 plugins:
   - search
-  - offline 
+  - offline
+  - blogging: 
+      dirs: # the directories to be included
+        - posts
+      features:
+        tags: {}
 extra:
   social:
     - icon: fontawesome/brands/twitter
@@ -41,6 +46,9 @@ extra:
     - icon: fontawesome/brands/mastodon
       link: https://infosec.exchange/@netops2devops    
       name: netops2devops on github
+    - icon: fontawesome/brands/keybase
+      link: https://keybase.io/netops2devops
+      name: netops2devops on keybase
 markdown_extensions:
   # Python Markdown
   - abbr
@@ -80,8 +88,3 @@ nav:
         - Productivity: recommendations/productivity/index.md
     - Posts: 
         - posts/index.md
-        - Security: posts/security/index.md
-        - Networking: posts/networking/index.md
-        - Infra-as-Code (IaC): posts/infra-as-code/index.md
-    
-        
