@@ -2,57 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://netops2devops.net/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/about.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/How-To/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/posts/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://netops2devops.net/posts/infra-as-code/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://netops2devops.net/posts/networking/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://netops2devops.net/posts/security/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/recommendations/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/recommendations/books/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/recommendations/podcasts/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://netops2devops.net/recommendations/productivity/index.html</loc>
-         <lastmod>2023-06-19</lastmod>
+         <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
