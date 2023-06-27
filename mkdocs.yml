@@ -3,6 +3,7 @@ site_url: https://netops2devops.net
 site_author: Kapil Agrawal
 theme:
   name: material
+  logo: assets/logo.png
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -14,7 +15,7 @@ theme:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: black
-      accent: red
+      accent: amber
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
