@@ -1,7 +1,6 @@
 ---
-title: Blog post
+title: Introduction
 tags: 
-  - development\r
-  - test\r
+  - about\r
+  - welcome\r
 ---
-This is a sample blog post. Trying to test out the `mkdocs-blogging-plugin`
