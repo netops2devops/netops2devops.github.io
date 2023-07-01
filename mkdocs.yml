@@ -50,6 +50,9 @@ extra:
     - icon: fontawesome/brands/keybase
       link: https://keybase.io/netops2devops
       name: netops2devops on keybase
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/k4pil
+      name: netops2devops on LinkedIN
   markdown_extensions:
     # Python Markdown
     - abbr
