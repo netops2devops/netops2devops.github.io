@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cookiecutter on netops2devops</title>
+    <link>http://localhost:1313/tags/cookiecutter/</link>
+    <description>Recent content in Cookiecutter on netops2devops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cookiecutter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Say goodbye to boilerplate code</title>
+      <link>http://localhost:1313/posts/my-cookiecutter/</link>
+      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/my-cookiecutter/</guid>
+      <description>Using cookiecutter &amp;amp; cruft to generate barebones project template</description>
+      <content:encoded><![CDATA[<p>We use <code>cookiecutter</code> to generate barebones project template and use <code>cruft</code> to keep the template up to date.</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

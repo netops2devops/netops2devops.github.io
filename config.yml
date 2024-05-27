@@ -1,0 +1,125 @@
+baseURL: "https://netops2devops.net/"
+title: netops2devops
+paginate: 5
+theme: PaperModX
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+
+minify:
+    disableXML: true
+    minifyOutput: true
+
+params:
+    env: production # to enable google analytics, opengraph, twitter-cards and schema.
+    title: netops2devops
+    description: "All things networking, systems, software and security related"
+    keywords: [Blog, netops2devops]
+    author: "Kapil Agrawal"
+    images: ["<link or path of image for opengraph, twitter-cards>"]
+    DateFormat: "January 2, 2006"
+    defaultTheme: auto # dark, light
+    disableThemeToggle: false
+
+    ShowAuthor: true
+    ShowReadingTime: true
+    ShowShareButtons: true
+    ShowPostNavLinks: true
+    ShowBreadCrumbs: true
+    ShowCodeCopyButtons: true
+    disableSpecial1stPost: false
+    disableScrollToTop: false
+    ShareButtons: ["x", "linkedin", "mastadon", "facebook"]
+    comments: false
+    hidemeta: false
+    hideSummary: false
+    showtoc: true
+    tocopen: true
+    TocSide: "left"
+
+    assets:
+      # disableFingerprinting: true
+      favicon: "./assets/"
+      favicon16x16: "<link / abs url>"
+      favicon32x32: "<link / abs url>"
+      apple_touch_icon: "<link / abs url>"
+      safari_pinned_tab: "<link / abs url>"
+
+    label:
+      text: "Home"
+      icon: /apple-touch-icon.png
+      iconHeight: 35
+
+    # home-info mode
+    homeInfoParams:
+        #Title: "blog"
+        Content: "**All things networking, systems, software and security**"
+
+    socialIcons:
+      - name: github
+        url: "https://github.com/netops2devops"
+      - name: linkedin
+        url: https://linkedin.com/in/netops2devops
+      - name: keybase
+        url: https://keybase.io/netops2devops
+      - name: mastadon
+        url: "https://infosec.exchange/@netops2devops"
+
+    cover:
+      hidden: true # hide everywhere but not in structured data
+      hiddenInList: true # hide on list pages and home
+      hiddenInSingle: true # hide on single page
+
+    # for search
+    # https://fusejs.io/api/options.html
+    fuseOpts:
+      isCaseSensitive: false
+      shouldSort: true
+      location: 0
+      distance: 1000
+      threshold: 0.4
+      minMatchCharLength: 0
+      keys: ["title", "permalink", "summary", "content"]
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    # required for search
+    - JSON 
+
+menu:
+  main:
+    - name: "About"
+      url: "/about/"
+      weight: 10
+    - name: Posts
+      url: /posts/
+      weight: 1
+    - name: Search
+      url: /search/
+      weight: 2
+    - name: Tags
+      url: /tags/
+      weight: 3
+    - name: Archive
+      url: /archives/
+      weight: 4
+      #- name: Newsletter
+      #  url: /newsletter/
+      #  weight: 1
+    
+        
+# Read: https://github.com/reorx/hugo-PaperModX/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+pygmentsUseClasses: true
+pygmentsCodeFences: true
+
+markup:
+  highlight:
+    guessSyntax: true
+    lineNos: true
+    noClasses: true
+  

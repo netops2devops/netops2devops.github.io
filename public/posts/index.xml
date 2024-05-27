@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on netops2devops</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on netops2devops</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Say goodbye to boilerplate code</title>
+      <link>http://localhost:1313/posts/my-cookiecutter/</link>
+      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/my-cookiecutter/</guid>
+      <description>Using cookiecutter &amp;amp; cruft to generate barebones project template</description>
+      <content:encoded><![CDATA[<p>We use <code>cookiecutter</code> to generate barebones project template and use <code>cruft</code> to keep the template up to date.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>IPv6 prefix delegation on Mikrotik</title>
+      <link>http://localhost:1313/posts/mikrotik-ipv6/</link>
+      <pubDate>Sun, 26 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/mikrotik-ipv6/</guid>
+      <description>RouterOS config to get IPv6 prefix delegation from your ISP</description>
+      <content:encoded><![CDATA[<h2 id="config">Config</h2>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>My development environment</title>
+      <link>http://localhost:1313/posts/my-dev-env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/my-dev-env/</guid>
+      <description>I use Apple M1 max for daily use. Majority of development happens here. Everyonce in a while when I need x86-64 arch for something I create a linux VM on my local proxmox server that I run at home.
+Tools I use Git VScode Docker Obsidian pre-commit 1 2 3 from pprint import pprint def show(json): pprint(json) 1 2 3 4 5 6 7 package main import fmt // main function func main(){ fmt.</description>
+      <content:encoded><![CDATA[<p>I use Apple M1 max for daily use. Majority of development happens here. Everyonce in a while when I need x86-64 arch for something I create a linux VM on my local proxmox server that I run at home.</p>
+<h2 id="tools-i-use">Tools I use</h2>
+<ul>
+<li>Git</li>
+<li>VScode</li>
+<li>Docker</li>
+<li>Obsidian</li>
+<li>pre-commit</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">json</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pprint</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">fmt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// main function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello World&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
