@@ -1,13 +1,12 @@
 baseURL: "https://netops2devops.net/"
 title: netops2devops
-paginate: 5
+paginate: 10
 theme: PaperModX
 
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
-
 
 minify:
     disableXML: true
