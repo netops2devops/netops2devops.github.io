@@ -522,19 +522,26 @@
   .dark .chroma .line {
     display: flex; }
   .dark .chroma .k {
-    color: #c678dd; }
+    color: #c678dd;
+    font-weight: normal; }
   .dark .chroma .kc {
-    color: #e5c07b; }
+    color: #e5c07b;
+    font-weight: normal; }
   .dark .chroma .kd {
-    color: #c678dd; }
+    color: #c678dd;
+    font-weight: normal; }
   .dark .chroma .kn {
-    color: #c678dd; }
+    color: #c678dd;
+    font-weight: normal; }
   .dark .chroma .kp {
-    color: #c678dd; }
+    color: #c678dd;
+    font-weight: normal; }
   .dark .chroma .kr {
-    color: #c678dd; }
+    color: #c678dd;
+    font-weight: normal; }
   .dark .chroma .kt {
-    color: #e5c07b; }
+    color: #e5c07b;
+    font-weight: normal; }
   .dark .chroma .n {
     color: #e06c75; }
   .dark .chroma .na {
@@ -555,10 +562,10 @@
     color: #e06c75; }
   .dark .chroma .nf {
     color: #61afef;
-    font-weight: bold; }
+    font-weight: normal; }
   .dark .chroma .fm {
     color: #56b6c2;
-    font-weight: bold; }
+    font-weight: normal; }
   .dark .chroma .nl {
     color: #e06c75; }
   .dark .chroma .nn {
@@ -626,7 +633,8 @@
   .dark .chroma .ow {
     color: #56b6c2; }
   .dark .chroma .p {
-    color: #abb2bf; }
+    color: #abb2bf;
+    font-weight: normal; }
   .dark .chroma .c {
     color: #7f848e; }
   .dark .chroma .ch {

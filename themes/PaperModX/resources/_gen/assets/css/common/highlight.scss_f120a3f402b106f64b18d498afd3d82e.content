@@ -625,6 +625,8 @@
     color: #56b6c2; }
   .dark .chroma .ow {
     color: #56b6c2; }
+  .dark .chroma .p {
+    color: #abb2bf; }
   .dark .chroma .c {
     color: #7f848e; }
   .dark .chroma .ch {
