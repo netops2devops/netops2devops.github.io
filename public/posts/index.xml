@@ -6,7 +6,54 @@
     <description>Recent content in Posts on netops2devops</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPv6 prefix delegation on Mikrotik</title>
+      <link>http://localhost:1313/posts/mikrotik-ipv6/</link>
+      <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/mikrotik-ipv6/</guid>
+      <description>Mikrotik RouterOS config for IPv6 prefix delegation</description>
+      <content:encoded><![CDATA[<h2 id="routeros-config">RouterOS config</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Configure interface group</span>
+</span></span><span class="line"><span class="cl">/interface list add <span class="nv">comment</span><span class="o">=</span><span class="s2">&#34;UPLINK to ISP&#34;</span> <span class="nv">name</span><span class="o">=</span>WAN
+</span></span><span class="line"><span class="cl">/interface list member add <span class="nv">comment</span><span class="o">=</span><span class="s2">&#34;WAN facing interface&#34;</span> <span class="nv">interface</span><span class="o">=</span>ether1 <span class="nv">list</span><span class="o">=</span>WAN
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable router-advertisement incoming from the ISP</span>
+</span></span><span class="line"><span class="cl">/ipv6 settings <span class="nb">set</span> accept-router-advertisements<span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Request an IPv6 prefix over WAN interface; my ISP hands out a /56</span>
+</span></span><span class="line"><span class="cl">/ipv6 dhcp-client add add-default-route<span class="o">=</span>yes <span class="nv">interface</span><span class="o">=</span>ether1 pool-name<span class="o">=</span>delegation pool-prefix-length<span class="o">=</span><span class="m">56</span> prefix-hint<span class="o">=</span>::/56 <span class="nv">request</span><span class="o">=</span>address,prefix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Only accept inbound router-advertisements on the WAN interface</span>
+</span></span><span class="line"><span class="cl">/ipv6 firewall filter add <span class="nv">action</span><span class="o">=</span>drop <span class="nv">chain</span><span class="o">=</span>input icmp-options<span class="o">=</span>134:0-255 in-interface-list<span class="o">=</span>!WAN <span class="nv">protocol</span><span class="o">=</span>icmpv6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Allow prefix delegatation on WAN interface</span>
+</span></span><span class="line"><span class="cl">/ipv6 firewall filter add <span class="nv">action</span><span class="o">=</span>accept <span class="nv">chain</span><span class="o">=</span>input <span class="nv">comment</span><span class="o">=</span><span class="s2">&#34;accept DHCPv6-Client prefix delegation.&#34;</span> dst-port<span class="o">=</span><span class="m">546</span> <span class="nv">protocol</span><span class="o">=</span>udp src-address<span class="o">=</span>fe80::/10
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></content:encoded>
+    </item>
+    
     <item>
       <title>Say goodbye to boilerplate code</title>
       <link>http://localhost:1313/posts/my-cookiecutter/</link>
@@ -15,17 +62,6 @@
       <guid>http://localhost:1313/posts/my-cookiecutter/</guid>
       <description>Using cookiecutter &amp;amp; cruft to generate barebones project template</description>
       <content:encoded><![CDATA[<p>We use <code>cookiecutter</code> to generate barebones project template and use <code>cruft</code> to keep the template up to date.</p>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>IPv6 prefix delegation on Mikrotik</title>
-      <link>http://localhost:1313/posts/mikrotik-ipv6/</link>
-      <pubDate>Sun, 26 May 2024 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/mikrotik-ipv6/</guid>
-      <description>RouterOS config to get IPv6 prefix delegation from your ISP</description>
-      <content:encoded><![CDATA[<h2 id="config">Config</h2>
 ]]></content:encoded>
     </item>
     
