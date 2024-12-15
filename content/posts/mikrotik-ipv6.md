@@ -4,7 +4,6 @@ date: 2024-12-14
 tags: ["IPv6", "Mikrotik", "Networking"]
 author: "Kapil Agrawal"
 comments: false
-description: "Mikrotik RouterOS config for IPv6 prefix delegation"
 ---
 ## RouterOS config
 
