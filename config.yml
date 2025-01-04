@@ -64,8 +64,8 @@ params:
         url: https://linkedin.com/in/netops2devops
       - name: keybase
         url: https://keybase.io/netops2devops
-      - name: mastadon
-        url: "https://infosec.exchange/@netops2devops"
+      - name: bluesky
+        url: "https://bsky.app/profile/netops2devops.net"
 
     cover:
       hidden: true # hide everywhere but not in structured data
