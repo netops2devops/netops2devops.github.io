@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Home</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+    <lastBuildDate>Sun, 05 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>My homelab setup</title>
+      <link>http://localhost:1313/posts/homelab/</link>
+      <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/homelab/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>IPv6 prefix delegation on Mikrotik</title>
+      <link>http://localhost:1313/posts/mikrotik-ipv6/</link>
+      <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/mikrotik-ipv6/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>My development environment</title>
+      <link>http://localhost:1313/posts/my-dev-env/</link>
+      <pubDate>Fri, 31 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/my-dev-env/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Say goodbye to boilerplate code</title>
+      <link>http://localhost:1313/posts/my-cookiecutter/</link>
+      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/my-cookiecutter/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
