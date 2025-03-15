@@ -1,5 +1,5 @@
 ---
-title: Running IPv6 enabled Kubernetes on a MacOS
+title: IPv6 enabled Kubernetes cluster on MacOS
 date: 2025-03-15
 tags: ["Kubernetes", "IPv6", "Cilium"]
 author: "Kapil Agrawal"
