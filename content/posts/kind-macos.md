@@ -13,11 +13,16 @@ If you look under the hood, Kubernetes is an API server which relies on composab
 
 **To get a functional IPv6 capable kubernetes cluster on a MacOS we need the following**
 
-- [orbstack](https://orbstack.dev)
+- [Orbstack](https://orbstack.dev)
 - [KIND](https://kind.sigs.k8s.io)
-- [Cilium] (https://cilium.io) 
+- [Cilium](https://cilium.io) 
 
-### Orbstack supports IPv6 containers on MacOS
+Make sure to have the following installed on your MacOS. If not, you can install them using homebrew.
+- `helm`
+- `kubectl`
+- `cilium-cli`
+
+### Orbstack
 
 After installing [orbstack](https://orbstack.dev) make sure your docker context is pointing to Orbstack. You may have to explicitly switch the docker context to orbstack if you have Docker desktop installed. In my case, I uninstalled Docker desktop.
 
@@ -38,6 +43,8 @@ Enable IPv6 in Docker daemon with the following config.
   "ipv6" : true
 }
 ```
+
+### Create a KIND cluster
 
 Create a file named `kind-config.yaml` to pre-configure KIND with the following config options. Notice that I am disabling the default CNI (flannel) so I can install Cilium 😋
 
@@ -61,12 +68,7 @@ nodes:
   - role: worker 
 ```
 
-### Create KIND cluster
-
-The following snippet assumes that you already have the following already installed on your Mac. If not, you can install them using homebrew.
-- `helm`
-- `kubectl`
-- `cilium-cli`
+Bootstrap the cluster.
 
 ```bash
 # Creates a new cluster with our custom config
@@ -87,8 +89,9 @@ Thanks for using kind! 😊
 ```
 
 Next we install Cilium CNI with IPv6 enabled
-```sh
-❯ helm install cilium cilium/cilium --namespace=kube-system --set ipv6.enabled=true --set ipam.mode=kubernetes
+
+```bash
+❯ helm install cilium cilium/cilium --namespace=kube-system --set ipv6.enabled=true
 ```
 
 Optionally, we can enable Hubble as well!
@@ -113,7 +116,7 @@ kind-worker2        Ready   worker         v1.32.2  fc00:f853:ccd:e793::4
 
 Now let's try deploying a simple application and verify connectivity over IPv6.
 
-### Deploy an app and verify connectivity over IPv6
+### Deploy and Verify
 ```bash
 ❯ kubectl create deployment --image nginx nginx --port 80
 deployment.apps/nginx created
