@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>IPv6 prefix delegation on Mikrotik &middot; Home</title>
-  <meta name="title" content="IPv6 prefix delegation on Mikrotik &middot; Home" />
+  <title> &middot; Home</title>
+  <meta name="title" content=" &middot; Home" />
   
   
-  <meta name="keywords" content="Networking, " />
   
   
-  <link rel="canonical" href="http://localhost:1313/posts/mikrotik-ipv6/" />
+  
+  <link rel="canonical" href="http://localhost:1313/posts/kind-macos/" />
   
   
   
@@ -67,19 +67,16 @@
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/mikrotik-ipv6/">
+  <meta property="og:url" content="http://localhost:1313/posts/kind-macos/">
   <meta property="og:site_name" content="Home">
-  <meta property="og:title" content="IPv6 prefix delegation on Mikrotik">
+  <meta property="og:title" content="Home">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-12-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-12-14T00:00:00+00:00">
-    <meta property="article:tag" content="Networking">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="IPv6 prefix delegation on Mikrotik">
+  <meta name="twitter:title" content="Home">
 
   
   <script type="application/ld+json">
@@ -87,26 +84,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "IPv6 prefix delegation on Mikrotik",
-    "headline": "IPv6 prefix delegation on Mikrotik",
+    "name": "",
+    "headline": "",
     
     
     "inLanguage": "en",
-    "url" : "http:\/\/localhost:1313\/posts\/mikrotik-ipv6\/",
+    "url" : "http:\/\/localhost:1313\/posts\/kind-macos\/",
     "author" : {
       "@type": "Person",
       "name": "netops2devops"
     },
-    "copyrightYear": "2024",
-    "dateCreated": "2024-12-14T00:00:00\u002b00:00",
-    "datePublished": "2024-12-14T00:00:00\u002b00:00",
     
-    "dateModified": "2024-12-14T00:00:00\u002b00:00",
     
-    "keywords": ["Networking"],
+    
+    
+    
+    
+    
     
     "mainEntityOfPage": "true",
-    "wordCount": "95"
+    "wordCount": "194"
   }]
   </script>
 
@@ -487,7 +484,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      IPv6 prefix delegation on Mikrotik
+      
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -532,7 +529,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-12-14T00:00:00&#43;00:00">December 14 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="0001-01-01T00:00:00&#43;00:00">January 1 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
 
 
 <script type="text/javascript" src="/js/zen-mode.min.eea5245cf9244ecbdf2c150d1c8833226c1541cadf6e98f63a7c9192b1a3676df2c3ec603b14f4cfaaa53971fd9d8955640c0f405bf3de2b43ee7a5fb29ae721.js" integrity="sha512-7qUkXPkkTsvfLBUNHIgzImwVQcrfbpj2OnyRkrGjZ23yw&#43;xgOxT0z6qlOXH9nYlVZAwPQFvz3itD7npfsprnIQ=="></script>
@@ -696,7 +693,17 @@
     class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#routeros-config">RouterOS config</a></li>
+    <li>
+      <ul>
+        <li><a href="#orbstack-supports-ipv6-containers-on-macos">Orbstack supports IPv6 containers on MacOS</a>
+          <ul>
+            <li><a href="#kind-configyaml">kind-config.yaml</a></li>
+            <li><a href="#ipv6-enabled-kind-cluster">IPv6 enabled #KIND cluster</a></li>
+            <li><a href="#delete-a-kind-cluster">Delete a #KIND cluster</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -710,7 +717,17 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#routeros-config">RouterOS config</a></li>
+    <li>
+      <ul>
+        <li><a href="#orbstack-supports-ipv6-containers-on-macos">Orbstack supports IPv6 containers on MacOS</a>
+          <ul>
+            <li><a href="#kind-configyaml">kind-config.yaml</a></li>
+            <li><a href="#ipv6-enabled-kind-cluster">IPv6 enabled #KIND cluster</a></li>
+            <li><a href="#delete-a-kind-cluster">Delete a #KIND cluster</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -796,32 +813,101 @@
         <div class="article-content max-w-prose mb-20">
           
 
-<h2 class="relative group">RouterOS config 
-    <div id="routeros-config" class="anchor"></div>
+<h1 class="relative group">Running Kubernetes in Docker (kind) on Macos 
+    <div id="running-kubernetes-in-docker-kind-on-macos" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#routeros-config" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#running-kubernetes-in-docker-kind-on-macos" aria-label="Anchor">#</a>
     </span>        
     
-</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Configure interface group</span>
-</span></span><span class="line"><span class="cl">/interface list add <span class="nv">comment</span><span class="o">=</span><span class="s2">&#34;UPLINK to ISP&#34;</span> <span class="nv">name</span><span class="o">=</span>WAN
-</span></span><span class="line"><span class="cl">/interface list member add <span class="nv">comment</span><span class="o">=</span><span class="s2">&#34;WAN facing interface&#34;</span> <span class="nv">interface</span><span class="o">=</span>ether1 <span class="nv">list</span><span class="o">=</span>WAN
+</h1>
+<p>I have been using <a href="https://orbstack.dev" target="_blank">orbstack</a> for over two years now as a drop in replacement for Docker desktop and I have to say it&rsquo;s beyond impressive in terms of performance and feature set. My main motivation to move away from Docker desktop was because it does not support IPv6 on a MacOS. The next thing I tried was Colima but that doesn&rsquo;t support IPv6 either.</p>
+
+
+<h3 class="relative group">Orbstack supports IPv6 containers on MacOS 
+    <div id="orbstack-supports-ipv6-containers-on-macos" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#orbstack-supports-ipv6-containers-on-macos" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~
+</span></span><span class="line"><span class="cl">❯ docker context ls
+</span></span><span class="line"><span class="cl">NAME            DESCRIPTION                               DOCKER ENDPOINT                                  ERROR
+</span></span><span class="line"><span class="cl">default         Current DOCKER_HOST based configuration   unix:///var/run/docker.sock
+</span></span><span class="line"><span class="cl">desktop-linux                                             unix:///Users/kagraw/.docker/run/docker.sock
+</span></span><span class="line"><span class="cl">orbstack *      OrbStack                                  unix:///Users/kagraw/.orbstack/run/docker.sock
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Enable router-advertisement incoming from the ISP</span>
-</span></span><span class="line"><span class="cl">/ipv6 settings <span class="nb">set</span> accept-router-advertisements<span class="o">=</span>yes
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Request an IPv6 prefix over WAN interface; my ISP hands out a /56</span>
-</span></span><span class="line"><span class="cl">/ipv6 dhcp-client add add-default-route<span class="o">=</span>yes <span class="nv">interface</span><span class="o">=</span>ether1 pool-name<span class="o">=</span>delegation pool-prefix-length<span class="o">=</span><span class="m">56</span> prefix-hint<span class="o">=</span>::/56 <span class="nv">request</span><span class="o">=</span>address,prefix
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Only accept inbound router-advertisements on the WAN interface</span>
-</span></span><span class="line"><span class="cl">/ipv6 firewall filter add <span class="nv">action</span><span class="o">=</span>drop <span class="nv">chain</span><span class="o">=</span>input icmp-options<span class="o">=</span>134:0-255 in-interface-list<span class="o">=</span>!WAN <span class="nv">protocol</span><span class="o">=</span>icmpv6
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Allow prefix delegatation on WAN interface</span>
-</span></span><span class="line"><span class="cl">/ipv6 firewall filter add <span class="nv">action</span><span class="o">=</span>accept <span class="nv">chain</span><span class="o">=</span>input <span class="nv">comment</span><span class="o">=</span><span class="s2">&#34;accept DHCPv6-Client prefix delegation.&#34;</span> dst-port<span class="o">=</span><span class="m">546</span> <span class="nv">protocol</span><span class="o">=</span>udp src-address<span class="o">=</span>fe80::/10
+</span></span><span class="line"><span class="cl">❯ cat .orbstack/config/docker.json
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;ip6tables&#34;</span> : false,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;ipv6&#34;</span> : <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div>
+
+<h4 class="relative group">kind-config.yaml 
+    <div id="kind-configyaml" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#kind-configyaml" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Cluster</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">kind.x-k8s.io/v1alpha4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kind</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">runtimeConfig</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">&#34;api/alpha&#34;: </span><span class="s2">&#34;false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networking</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apiServerPort</span><span class="p">:</span><span class="w"> </span><span class="m">6443</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ipFamily</span><span class="p">:</span><span class="w"> </span><span class="l">dual</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableDefaultCNI</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># IPv6 prefix must be specified first</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceSubnet</span><span class="p">:</span><span class="w"> </span><span class="l">fd00:10:96::/112,10.96.0.0/12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nodes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">control-plane</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">worker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">worker </span><span class="w">
+</span></span></span></code></pre></div>
+
+<h4 class="relative group">IPv6 enabled #KIND cluster 
+    <div id="ipv6-enabled-kind-cluster" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#ipv6-enabled-kind-cluster" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code># Creates a new cluster
+❯ kind create cluster --config ~/.config/kind/kind-config.yaml
+
+# Install Cilium with IPv6 enabled
+❯ helm install cilium cilium/cilium --namespace=kube-system --set ipv6.enabled=true
+</code></pre>
+
+<h4 class="relative group">Delete a #KIND cluster 
+    <div id="delete-a-kind-cluster" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#delete-a-kind-cluster" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<pre tabindex="0"><code>❯ kind delete cluster --name $(kind get clusters)
+</code></pre>
           
           
           
@@ -838,7 +924,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/mikrotik-ipv6/&amp;title=IPv6%20prefix%20delegation%20on%20Mikrotik"
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/kind-macos/&amp;title="
       title="Share on LinkedIn"
       aria-label="Share on LinkedIn"
       >
@@ -857,7 +943,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/mikrotik-ipv6/&amp;text=IPv6%20prefix%20delegation%20on%20Mikrotik"
+      href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/kind-macos/&amp;text="
       title="Tweet on Twitter"
       aria-label="Tweet on Twitter"
       >
@@ -875,7 +961,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=IPv6%20prefix%20delegation%20on%20Mikrotik&#43;http://localhost:1313/posts/mikrotik-ipv6/"
+      href="https://bsky.app/intent/compose?text=&#43;http://localhost:1313/posts/kind-macos/"
       title="Post on Bluesky"
       aria-label="Post on Bluesky"
       >
@@ -893,7 +979,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=IPv6%20prefix%20delegation%20on%20Mikrotik%20http://localhost:1313/posts/mikrotik-ipv6/"
+      href="https://s2f.kytta.dev/?text=%20http://localhost:1313/posts/kind-macos/"
       title=""
       aria-label=""
       >
@@ -912,7 +998,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=http://localhost:1313/posts/mikrotik-ipv6/&amp;resubmit=true&amp;title=IPv6%20prefix%20delegation%20on%20Mikrotik"
+      href="https://reddit.com/submit/?url=http://localhost:1313/posts/kind-macos/&amp;resubmit=true&amp;title="
       title="Submit to Reddit"
       aria-label="Submit to Reddit"
       >
@@ -931,7 +1017,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/mikrotik-ipv6/&amp;quote=IPv6%20prefix%20delegation%20on%20Mikrotik"
+      href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/kind-macos/&amp;quote="
       title="Share on Facebook"
       aria-label="Share on Facebook"
       >
@@ -960,8 +1046,8 @@
           
         
       <script>
-        var oid = "views_posts\/mikrotik-ipv6.md"
-        var oid_likes = "likes_posts\/mikrotik-ipv6.md"
+        var oid = "views_posts\/kind-macos.md"
+        var oid_likes = "likes_posts\/kind-macos.md"
       </script>
       
       
@@ -981,30 +1067,30 @@
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="flex group mr-3" href="/posts/kind-macos/">
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/mikrotik-ipv6/">
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  ></span
+                  >IPv6 prefix delegation on Mikrotik</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="0001-01-01T00:00:00&#43;00:00">January 1 0001</time>
+                    <time datetime="2024-12-14T00:00:00&#43;00:00">December 14 2024</time>
                   
                 </span>
               </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
             </a>
-          
-        </span>
-        <span>
           
         </span>
       </div>
