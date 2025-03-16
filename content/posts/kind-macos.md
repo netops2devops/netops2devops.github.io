@@ -5,11 +5,12 @@ tags: ["Kubernetes", "IPv6", "Cilium"]
 author: "Kapil Agrawal"
 comments: false
 ---
+
 If you use MacOS as your daily driver and need a functional IPv6 enabled Kubernetes cluster for local development/testing this article is meant for you! I have been using [orbstack](https://orbstack.dev) for a few years now as a drop in replacement for Docker desktop and I have to say it's beyond impressive in terms of performance and features. My main motivation to move away from Docker desktop was the lack of support IPv6 on a MacOS and the horrendous performance. The next thing I tried was Colima which is quite flexible but still [lacks IPv6 support on MacOS](https://news.ycombinator.com/item?id=41422931).
 
-While there are multiple kubernetes distributions such as [minikube](https://github.com/kubernetes/minikube/issues/8535), [k3d](https://github.com/k3d-io/k3d/issues/833) which work quite well on a MacOS, neither of those support IPv6 😭 Eventually I ended up trying [KIND](https://kind.sigs.k8s.io) and turns out, it works perfectly fine with IPv6 and is fully customizable 🎉 
+While there are multiple kubernetes distributions such as [minikube](https://github.com/kubernetes/minikube/issues/8535), [k3d](https://github.com/k3d-io/k3d/issues/833) which work quite well on a MacOS, neither of those support IPv6 😭 Eventually I ended up trying [KIND](https://kind.sigs.k8s.io) and turns out, it works perfectly fine with IPv6 and is fully customizable 🎉
 
-If you look under the hood, Kubernetes is an API server which relies on composable set of components to build a distributed system. Kubernetes by itself does not handle networking just as it does not handle managing container lifecycle, it relies on a container runtime such as containerd. Similarly, k8s relies on a container network interface [CNI] (https://cni.dev) which is the component that manages cluster networking and routing network traffic in and out of the cluster. But to make a Kubernetes cluster IPv6 capable, we need to install a CNI which supports IPv6. Cilium is my CNI of choice as it support IPv6, has a large community around it and is a CNCF graduate project which speaks for it's maturity. I will write more about Cilium and other CNI's in a separate blog post ;)
+If you look under the hood, Kubernetes is an API server which relies on composable set of components to build a distributed system. Kubernetes by itself does not handle networking just as it does not handle managing container lifecycle, it relies on a container runtime such as containerd. Similarly, k8s relies on a container network interface [CNI](https://cni.dev) which is the component that manages cluster networking and routing network traffic in and out of the cluster. But to make a Kubernetes cluster IPv6 capable, we need to install a CNI which supports IPv6. Cilium is my CNI of choice as it support IPv6, has a large community around it and is a CNCF graduate project which speaks for it's maturity. I will write more about Cilium and other CNI's in a separate blog post ;)
 
 #### Needed for running K8s with IPv6 on MacOS
 
@@ -32,7 +33,8 @@ desktop-linux                                             unix:///Users/kagraw/.
 orbstack *      OrbStack                                  unix:///Users/kagraw/.orbstack/run/docker.sock
 ```
 
-Enable IPv6 in Docker daemon with the following config. 
+Enable IPv6 in Docker daemon with the following config.
+
 ```sh
 ❯ cat .orbstack/config/docker.json
 {
@@ -46,6 +48,7 @@ Enable IPv6 in Docker daemon with the following config.
 Create a file named `kind-config.yaml` to pre-configure KIND with the following config options. Notice that I am disabling the default CNI (flannel) so I can install Cilium 😋
 
 #### kind-config.yaml
+
 ```YAML
 ---
 kind: Cluster
@@ -62,7 +65,7 @@ networking:
 nodes:
   - role: control-plane
   - role: worker
-  - role: worker 
+  - role: worker
 ```
 
 Bootstrap the cluster.
@@ -92,6 +95,7 @@ Next we install Cilium CNI with IPv6 enabled
 ```
 
 Optionally, we can enable Hubble as well!
+
 ```bash
 ❯ helm upgrade -n kube-system \
     cilium cilium/cilium \
@@ -100,8 +104,9 @@ Optionally, we can enable Hubble as well!
   --set hubble.ui.enabled=true
 ```
 
-The installation takes about 2-3 mins. We can monitor progress using the following 
-```
+The installation takes about 2-3 mins. We can monitor progress using the following
+
+```sh
 ❯ cilium status --wait
 
 ❯ kubectl get nodes -o wide | awk '{print $1, $2, $3, $5, $6}' | column -t
@@ -114,6 +119,7 @@ kind-worker2        Ready   worker         v1.32.2  fc00:f853:ccd:e793::4
 Now let's try deploying a simple application and verify connectivity over IPv6.
 
 ### Deploy and Verify
+
 ```bash
 ❯ kubectl create deployment --image nginx nginx --port 80
 deployment.apps/nginx created
@@ -129,7 +135,7 @@ nginx        NodePort    fd00:10:96::dbc9   <none>        80:30368/TCP   12s
 External IP shows as none but that is expected since we created a service of type `NodePort` which is exposed over port `30368`. To access a NodePort service we can send a http GET request to any of the cluster nodes over this port.
 
 ```bash
-❯ curl -6 http://\[fc00:f853:ccd:e793::3\]:30368
+❯ curl -6 http://[fc00:f853:ccd:e793::3]:30368
 <!DOCTYPE html>
 <html>
 <head>
@@ -158,4 +164,5 @@ Commercial support is available at
 Voila!🍾 our application is running on Kubernetes and is accessible over IPv6!
 
 ### Conclusion
-Running an IPv6 capable Kubernetes cluster is absolutely possible on a MacOS and developers can leverage this setup to develop and test their applications in a IPv6 native environment. 
+
+Running an IPv6 capable Kubernetes cluster is absolutely possible on a MacOS and developers can leverage this setup to develop and test their applications in a IPv6 native environment.
