@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Home</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://netops2devops.net/tags/</link>
     <description>Recent content in Tags on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://netops2devops.net/tags/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Cilium</title>
-      <link>http://localhost:1313/tags/cilium/</link>
+      <link>https://netops2devops.net/tags/cilium/</link>
       <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/cilium/</guid>
+      <guid>https://netops2devops.net/tags/cilium/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>IPv6</title>
-      <link>http://localhost:1313/tags/ipv6/</link>
+      <link>https://netops2devops.net/tags/ipv6/</link>
       <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/ipv6/</guid>
+      <guid>https://netops2devops.net/tags/ipv6/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Kubernetes</title>
-      <link>http://localhost:1313/tags/kubernetes/</link>
+      <link>https://netops2devops.net/tags/kubernetes/</link>
       <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/kubernetes/</guid>
+      <guid>https://netops2devops.net/tags/kubernetes/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Networking</title>
-      <link>http://localhost:1313/tags/networking/</link>
+      <link>https://netops2devops.net/tags/networking/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/networking/</guid>
+      <guid>https://netops2devops.net/tags/networking/</guid>
       <description></description>
       
     </item>

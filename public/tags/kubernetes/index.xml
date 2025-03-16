@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on Home</title>
-    <link>http://localhost:1313/tags/kubernetes/</link>
+    <link>https://netops2devops.net/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://netops2devops.net/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>IPv6 enabled Kubernetes cluster on MacOS</title>
-      <link>http://localhost:1313/posts/kind-macos/</link>
+      <link>https://netops2devops.net/posts/kind-macos/</link>
       <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/kind-macos/</guid>
+      <guid>https://netops2devops.net/posts/kind-macos/</guid>
       <description></description>
       
     </item>
