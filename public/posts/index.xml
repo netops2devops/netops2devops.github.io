@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Home</title>
-    <link>https://netops2devops.net/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://netops2devops.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>IPv6 enabled Kubernetes cluster on MacOS</title>
-      <link>https://netops2devops.net/posts/kind-macos/</link>
+      <link>http://localhost:1313/posts/kind-macos/</link>
       <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://netops2devops.net/posts/kind-macos/</guid>
+      <guid>http://localhost:1313/posts/kind-macos/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>IPv6 prefix delegation on Mikrotik</title>
-      <link>https://netops2devops.net/posts/mikrotik-ipv6/</link>
+      <link>http://localhost:1313/posts/mikrotik-ipv6/</link>
       <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://netops2devops.net/posts/mikrotik-ipv6/</guid>
+      <guid>http://localhost:1313/posts/mikrotik-ipv6/</guid>
       <description></description>
       
     </item>
