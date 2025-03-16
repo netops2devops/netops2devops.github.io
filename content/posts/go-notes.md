@@ -6,7 +6,7 @@ author: "Kapil Agrawal"
 comments: false
 ---
 
-# General rules
+## General rules
 
 - Identifiers starting with an uppercase letter are exportable outside the package
 
@@ -24,7 +24,7 @@ comments: false
 
 ---
 
-# Slices
+## Slices
 
 - slice internals
   - https://go.dev/blog/slices-intro
@@ -65,7 +65,7 @@ fmt.Println(cap(s))          // 3
 
 ---
 
-# Maps
+## Maps
 
 ```go
 //declaration
@@ -114,7 +114,7 @@ func main(){
 
 ```
 
-## The Comma-OK idiom
+### The Comma-OK idiom
 
 - Unlike Python, Go does not have a built-in way to check if a key is present in a Map or not
 - Go’s map lookup does not throw errors for missing keys. Instead, it returns the zero value of the `ValueType` which makes this idiom essential for distinguishing between "key not present" and "key present with zero-value."
@@ -151,7 +151,7 @@ func main(){
 }
 ```
 
-## Map operations
+### Map operations
 
 ```go
 //Define & initialize
@@ -181,7 +181,7 @@ for k,v := range totalWins{
 
 ---
 
-# Structs
+## Structs
 
 - Define a struct when you have related data that needs to be grouped together
 
@@ -215,7 +215,7 @@ type struct employee{
 
 ```
 
-## Anonymous struct
+### Anonymous struct
 
 - Useful for marshaling a struct into JSON format and vice versa
 - Remember, `struct` is a type. Anonymous struct types are NOT exportable outside the package where they’re declared because the type itself has no name, hence anonymous.
@@ -244,7 +244,7 @@ var Employee struct{
 
 ---
 
-# Functions
+## Functions
 
 - Unlike Python, Go does not have named and optional input parameters
 - Although it is possible to _simulate_ python `**kwargs` using a struct
@@ -309,7 +309,7 @@ func main() {
 
 ```
 
-## Function as a type
+### Function as a type
 
 - Functions are first class citizens in Go. They can be used as types
 
@@ -353,7 +353,7 @@ func main(){
 }
 ```
 
-## Anonymous function
+## Anonymous functions
 
 - You can define new functions inside a function and assign them to variables. The inner functions don't have a name, hence anonymous.
 
@@ -386,7 +386,7 @@ func AnonymousFunc(y int) {
 
 ```
 
-# Closure
+## Closure
 
 - Functions declared inside functions are special; they are closures.
 - Inner functions can access and modify the variables present in the outer function
@@ -475,7 +475,7 @@ func main() {
 }
 ```
 
-# Pointers
+## Pointers
 
 - The zero value for a pointer is nil
 - When passing a pointer variable to a function, you're actually passing _a copy_ of the pointer variable (memory address) which holds to the original data.
@@ -585,7 +585,7 @@ pet2 := &Animal      // method set contains SuggestNames() and PetID()
 
 ```
 
-## When to use a pointer receiver, when to use a value receiver
+## Pointer receiver vs. Value receiver
 
 Use a pointer receiver when :
 
@@ -600,13 +600,13 @@ Use a value receiver when :
 > - You do not intend to modify the receiver
 > - The receiver is a map, a func, a chan, a slice, a string, or an interface value (because internally it’s already a pointer)
 
-# Interfaces
+## Interfaces
 
 - An interface is like an abstract class in Python.
 - `interface` is a type which defines abstract behavior via methods.
 - An instance is said to have satisfied the contract (met a behavior) once it implements all the methods defined in the interface definition.
 
-# Packages and Modules
+## Packages and Modules
 
 ### Downloading a Go module outside of a project
 
