@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
-  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  data-auto-appearance="true"><head>
   <meta charset="utf-8" />
   
   <meta http-equiv="content-language" content="en" />
@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title> &middot; Home</title>
-  <meta name="title" content=" &middot; Home" />
+  <title>IPv6 enabled Kubernetes cluster on MacOS &middot; Home</title>
+  <meta name="title" content="IPv6 enabled Kubernetes cluster on MacOS &middot; Home" />
   
   
+  <meta name="keywords" content="Kubernetes, IPv6, Cilium, " />
   
   
-  
-  <link rel="canonical" href="http://localhost:1313/posts/kind-macos/" />
+  <link rel="canonical" href="https://netops2devops.net/posts/kind-macos/" />
   
   
   
@@ -67,16 +67,21 @@
   
   
   
-  <meta property="og:url" content="http://localhost:1313/posts/kind-macos/">
+  <meta property="og:url" content="https://netops2devops.net/posts/kind-macos/">
   <meta property="og:site_name" content="Home">
-  <meta property="og:title" content="Home">
+  <meta property="og:title" content="IPv6 enabled Kubernetes cluster on MacOS">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-15T00:00:00+00:00">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="IPv6">
+    <meta property="article:tag" content="Cilium">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Home">
+  <meta name="twitter:title" content="IPv6 enabled Kubernetes cluster on MacOS">
 
   
   <script type="application/ld+json">
@@ -84,26 +89,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "",
-    "headline": "",
+    "name": "IPv6 enabled Kubernetes cluster on MacOS",
+    "headline": "IPv6 enabled Kubernetes cluster on MacOS",
     
     
     "inLanguage": "en",
-    "url" : "http:\/\/localhost:1313\/posts\/kind-macos\/",
+    "url" : "https:\/\/netops2devops.net\/posts\/kind-macos\/",
     "author" : {
       "@type": "Person",
       "name": "netops2devops"
     },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-03-15T00:00:00\u002b00:00",
+    "datePublished": "2025-03-15T00:00:00\u002b00:00",
     
+    "dateModified": "2025-03-15T00:00:00\u002b00:00",
     
-    
-    
-    
-    
-    
+    "keywords": ["Kubernetes","IPv6","Cilium"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "194"
+    "wordCount": "847"
   }]
   </script>
 
@@ -484,7 +489,7 @@
   <header id="single_header" class="mt-5 max-w-prose">
     
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      
+      IPv6 enabled Kubernetes cluster on MacOS
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -529,7 +534,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="0001-01-01T00:00:00&#43;00:00">January 1 0001</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2025-03-15T00:00:00&#43;00:00">March 15 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
 <script type="text/javascript" src="/js/zen-mode.min.eea5245cf9244ecbdf2c150d1c8833226c1541cadf6e98f63a7c9192b1a3676df2c3ec603b14f4cfaaa53971fd9d8955640c0f405bf3de2b43ee7a5fb29ae721.js" integrity="sha512-7qUkXPkkTsvfLBUNHIgzImwVQcrfbpj2OnyRkrGjZ23yw&#43;xgOxT0z6qlOXH9nYlVZAwPQFvz3itD7npfsprnIQ=="></script>
@@ -695,13 +700,14 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#orbstack-supports-ipv6-containers-on-macos">Orbstack supports IPv6 containers on MacOS</a>
+        <li><a href="#orbstack">Orbstack</a></li>
+        <li><a href="#create-a-kind-cluster">Create a KIND cluster</a>
           <ul>
             <li><a href="#kind-configyaml">kind-config.yaml</a></li>
-            <li><a href="#ipv6-enabled-kind-cluster">IPv6 enabled #KIND cluster</a></li>
-            <li><a href="#delete-a-kind-cluster">Delete a #KIND cluster</a></li>
           </ul>
         </li>
+        <li><a href="#deploy-and-verify">Deploy and Verify</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
       </ul>
     </li>
   </ul>
@@ -719,13 +725,14 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#orbstack-supports-ipv6-containers-on-macos">Orbstack supports IPv6 containers on MacOS</a>
+        <li><a href="#orbstack">Orbstack</a></li>
+        <li><a href="#create-a-kind-cluster">Create a KIND cluster</a>
           <ul>
             <li><a href="#kind-configyaml">kind-config.yaml</a></li>
-            <li><a href="#ipv6-enabled-kind-cluster">IPv6 enabled #KIND cluster</a></li>
-            <li><a href="#delete-a-kind-cluster">Delete a #KIND cluster</a></li>
           </ul>
         </li>
+        <li><a href="#deploy-and-verify">Deploy and Verify</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
       </ul>
     </li>
   </ul>
@@ -811,45 +818,60 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          
+          <p>If you use MacOS as your daily driver and need a functional IPv6 enabled Kubernetes cluster for local development/testing this article is meant for you! I have been using <a href="https://orbstack.dev" target="_blank">orbstack</a> for a few years now as a drop in replacement for Docker desktop and I have to say it&rsquo;s beyond impressive in terms of performance and features. My main motivation to move away from Docker desktop was the lack of support IPv6 on a MacOS and the horrendous performance. The next thing I tried was Colima which is quite flexible but still <a href="https://news.ycombinator.com/item?id=41422931" target="_blank">lacks IPv6 support on MacOS</a>.</p>
+<p>While there are multiple kubernetes distributions such as <a href="https://github.com/kubernetes/minikube/issues/8535" target="_blank">minikube</a>, <a href="https://github.com/k3d-io/k3d/issues/833" target="_blank">k3d</a> which work quite well on a MacOS, neither of those support IPv6 😭 Eventually I ended up trying <a href="https://kind.sigs.k8s.io" target="_blank">KIND</a> and turns out, it works perfectly fine with IPv6 and is fully customizable 🎉</p>
+<p>If you look under the hood, Kubernetes is an API server which relies on composable set of components to build a distributed system. Kubernetes by itself does not handle networking just as it does not handle managing container lifecycle, it relies on a container runtime such as containerd. Similarly, k8s relies on a container network interface [CNI] (<a href="https://cni.dev" target="_blank">https://cni.dev</a>) which is the component that manages cluster networking and routing network traffic in and out of the cluster. I will write more about CNI&rsquo;s in a separate blog post ;) But to make a Kubernetes cluster IPv6 capable, we need to install a CNI which supports IPv6. Cilium is my CNI of choice as it support IPv6, has a large community around it and is a CNCF graduate project which speaks for it&rsquo;s maturity.</p>
+<p><strong>To get a functional IPv6 capable kubernetes cluster on a MacOS we need the following</strong></p>
+<ul>
+<li><a href="https://orbstack.dev" target="_blank">Orbstack</a></li>
+<li><a href="https://kind.sigs.k8s.io" target="_blank">KIND</a></li>
+<li><a href="https://cilium.io" target="_blank">Cilium</a></li>
+</ul>
+<p>Make sure to have the following installed on your MacOS. If not, you can install them using homebrew.</p>
+<ul>
+<li><code>helm</code></li>
+<li><code>kubectl</code></li>
+<li><code>cilium-cli</code></li>
+</ul>
 
-<h1 class="relative group">Running Kubernetes in Docker (kind) on Macos 
-    <div id="running-kubernetes-in-docker-kind-on-macos" class="anchor"></div>
+
+<h3 class="relative group">Orbstack 
+    <div id="orbstack" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#running-kubernetes-in-docker-kind-on-macos" aria-label="Anchor">#</a>
-    </span>        
-    
-</h1>
-<p>I have been using <a href="https://orbstack.dev" target="_blank">orbstack</a> for over two years now as a drop in replacement for Docker desktop and I have to say it&rsquo;s beyond impressive in terms of performance and feature set. My main motivation to move away from Docker desktop was because it does not support IPv6 on a MacOS. The next thing I tried was Colima but that doesn&rsquo;t support IPv6 either.</p>
-
-
-<h3 class="relative group">Orbstack supports IPv6 containers on MacOS 
-    <div id="orbstack-supports-ipv6-containers-on-macos" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#orbstack-supports-ipv6-containers-on-macos" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#orbstack" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
+<p>After installing <a href="https://orbstack.dev" target="_blank">orbstack</a> make sure your docker context is pointing to Orbstack. You may have to explicitly switch the docker context to orbstack if you have Docker desktop installed. In my case, I uninstalled Docker desktop.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~
 </span></span><span class="line"><span class="cl">❯ docker context ls
 </span></span><span class="line"><span class="cl">NAME            DESCRIPTION                               DOCKER ENDPOINT                                  ERROR
 </span></span><span class="line"><span class="cl">default         Current DOCKER_HOST based configuration   unix:///var/run/docker.sock
 </span></span><span class="line"><span class="cl">desktop-linux                                             unix:///Users/kagraw/.docker/run/docker.sock
 </span></span><span class="line"><span class="cl">orbstack *      OrbStack                                  unix:///Users/kagraw/.orbstack/run/docker.sock
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">❯ cat .orbstack/config/docker.json
+</span></span></code></pre></div><p>Enable IPv6 in Docker daemon with the following config.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ cat .orbstack/config/docker.json
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;ip6tables&#34;</span> : false,
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;ipv6&#34;</span> : <span class="nb">true</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div>
+
+<h3 class="relative group">Create a KIND cluster 
+    <div id="create-a-kind-cluster" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#create-a-kind-cluster" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Create a file named <code>kind-config.yaml</code> to pre-configure KIND with the following config options. Notice that I am disabling the default CNI (flannel) so I can install Cilium 😋</p>
+
 
 <h4 class="relative group">kind-config.yaml 
     <div id="kind-configyaml" class="anchor"></div>
@@ -872,42 +894,105 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ipFamily</span><span class="p">:</span><span class="w"> </span><span class="l">dual</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disableDefaultCNI</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># IPv6 prefix must be specified first</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceSubnet</span><span class="p">:</span><span class="w"> </span><span class="l">fd00:10:96::/112,10.96.0.0/12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceSubnet</span><span class="p">:</span><span class="w"> </span><span class="l">fd00:10:96::/112,10.96.0.0/16</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nodes</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">control-plane</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">worker</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">worker </span><span class="w">
-</span></span></span></code></pre></div>
+</span></span></span></code></pre></div><p>Bootstrap the cluster.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Creates a new cluster with our custom config</span>
+</span></span><span class="line"><span class="cl">❯ kind create cluster --config kind-config.yaml
+</span></span><span class="line"><span class="cl">Creating cluster <span class="s2">&#34;kind&#34;</span> ...
+</span></span><span class="line"><span class="cl"> ✓ Ensuring node image <span class="o">(</span>kindest/node:v1.32.2<span class="o">)</span> 🖼
+</span></span><span class="line"><span class="cl"> ✓ Preparing nodes 📦 📦 📦
+</span></span><span class="line"><span class="cl"> ✓ Writing configuration 📜
+</span></span><span class="line"><span class="cl"> ✓ Starting control-plane 🕹️
+</span></span><span class="line"><span class="cl"> ✓ Installing StorageClass 💾
+</span></span><span class="line"><span class="cl"> ✓ Joining worker nodes 🚜
+</span></span><span class="line"><span class="cl">Set kubectl context to <span class="s2">&#34;kind-kind&#34;</span>
+</span></span><span class="line"><span class="cl">You can now use your cluster with:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl cluster-info --context kind-kind
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Thanks <span class="k">for</span> using kind! 😊
+</span></span></code></pre></div><p>Next we install Cilium CNI with IPv6 enabled</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ helm install cilium cilium/cilium --namespace<span class="o">=</span>kube-system --set ipv6.enabled<span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div><p>Optionally, we can enable Hubble as well!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ helm upgrade -n kube-system <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    cilium cilium/cilium <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --reuse-values --version 1.17.1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set hubble.relay.enabled<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set hubble.ui.enabled<span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div><p>The installation takes about 2-3 mins. We can monitor progress using the following</p>
+<pre tabindex="0"><code>❯ cilium status --wait
 
-<h4 class="relative group">IPv6 enabled #KIND cluster 
-    <div id="ipv6-enabled-kind-cluster" class="anchor"></div>
+❯ kubectl get nodes -o wide | awk &#39;{print $1, $2, $3, $5, $6}&#39; | column -t
+NAME                STATUS  ROLES          VERSION  INTERNAL-IP
+kind-control-plane  Ready   control-plane  v1.32.2  fc00:f853:ccd:e793::2
+kind-worker         Ready   worker         v1.32.2  fc00:f853:ccd:e793::3
+kind-worker2        Ready   worker         v1.32.2  fc00:f853:ccd:e793::4
+</code></pre><p>Now let&rsquo;s try deploying a simple application and verify connectivity over IPv6.</p>
+
+
+<h3 class="relative group">Deploy and Verify 
+    <div id="deploy-and-verify" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#ipv6-enabled-kind-cluster" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#deploy-and-verify" aria-label="Anchor">#</a>
     </span>        
     
-</h4>
-<pre tabindex="0"><code># Creates a new cluster
-❯ kind create cluster --config ~/.config/kind/kind-config.yaml
+</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ kubectl create deployment --image nginx nginx --port <span class="m">80</span>
+</span></span><span class="line"><span class="cl">deployment.apps/nginx created
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">❯ kubectl expose deployment nginx --type NodePort
+</span></span><span class="line"><span class="cl">service/nginx exposed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">❯ kubectl get svc
+</span></span><span class="line"><span class="cl">NAME         TYPE        CLUSTER-IP         EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>        AGE
+</span></span><span class="line"><span class="cl">nginx        NodePort    fd00:10:96::dbc9   &lt;none&gt;        80:30368/TCP   12s
+</span></span></code></pre></div><p>External IP shows as none but that is expected since we created a service of type <code>NodePort</code> which is exposed over port <code>30368</code>. To access a NodePort service we can send a http GET request to any of the cluster nodes over this port.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ curl -6 http://<span class="se">\[</span>fc00:f853:ccd:e793::3<span class="se">\]</span>:30368
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE html&gt;
+</span></span><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;
+</span></span><span class="line"><span class="cl">&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+</span></span><span class="line"><span class="cl">&lt;style&gt;
+</span></span><span class="line"><span class="cl">html <span class="o">{</span> color-scheme: light dark<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">body <span class="o">{</span> width: 35em<span class="p">;</span> margin: <span class="m">0</span> auto<span class="p">;</span>
+</span></span><span class="line"><span class="cl">font-family: Tahoma, Verdana, Arial, sans-serif<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">&lt;/style&gt;
+</span></span><span class="line"><span class="cl">&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+</span></span><span class="line"><span class="cl">&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+</span></span><span class="line"><span class="cl">working. Further configuration is required.&lt;/p&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;p&gt;For online documentation and support please refer to
+</span></span><span class="line"><span class="cl">&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;http://nginx.org/&#34;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+</span></span><span class="line"><span class="cl">Commercial support is available at
+</span></span><span class="line"><span class="cl">&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;http://nginx.com/&#34;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;p&gt;&lt;em&gt;Thank you <span class="k">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;
+</span></span></code></pre></div><p>Voila!🍾 our application is running on Kubernetes and is accessible over IPv6!</p>
 
-# Install Cilium with IPv6 enabled
-❯ helm install cilium cilium/cilium --namespace=kube-system --set ipv6.enabled=true
-</code></pre>
 
-<h4 class="relative group">Delete a #KIND cluster 
-    <div id="delete-a-kind-cluster" class="anchor"></div>
+<h3 class="relative group">Conclusion 
+    <div id="conclusion" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#delete-a-kind-cluster" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#conclusion" aria-label="Anchor">#</a>
     </span>        
     
-</h4>
-<pre tabindex="0"><code>❯ kind delete cluster --name $(kind get clusters)
-</code></pre>
+</h3>
+<p>Running an IPv6 capable Kubernetes cluster is absolutely possible on a MacOS and developers can leverage this setup to develop and test their applications in a IPv6 native environment.</p>
+
           
           
           
@@ -924,7 +1009,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:1313/posts/kind-macos/&amp;title="
+      href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://netops2devops.net/posts/kind-macos/&amp;title=IPv6%20enabled%20Kubernetes%20cluster%20on%20MacOS"
       title="Share on LinkedIn"
       aria-label="Share on LinkedIn"
       >
@@ -943,7 +1028,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://twitter.com/intent/tweet/?url=http://localhost:1313/posts/kind-macos/&amp;text="
+      href="https://twitter.com/intent/tweet/?url=https://netops2devops.net/posts/kind-macos/&amp;text=IPv6%20enabled%20Kubernetes%20cluster%20on%20MacOS"
       title="Tweet on Twitter"
       aria-label="Tweet on Twitter"
       >
@@ -961,7 +1046,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://bsky.app/intent/compose?text=&#43;http://localhost:1313/posts/kind-macos/"
+      href="https://bsky.app/intent/compose?text=IPv6%20enabled%20Kubernetes%20cluster%20on%20MacOS&#43;https://netops2devops.net/posts/kind-macos/"
       title="Post on Bluesky"
       aria-label="Post on Bluesky"
       >
@@ -979,7 +1064,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://s2f.kytta.dev/?text=%20http://localhost:1313/posts/kind-macos/"
+      href="https://s2f.kytta.dev/?text=IPv6%20enabled%20Kubernetes%20cluster%20on%20MacOS%20https://netops2devops.net/posts/kind-macos/"
       title=""
       aria-label=""
       >
@@ -998,7 +1083,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://reddit.com/submit/?url=http://localhost:1313/posts/kind-macos/&amp;resubmit=true&amp;title="
+      href="https://reddit.com/submit/?url=https://netops2devops.net/posts/kind-macos/&amp;resubmit=true&amp;title=IPv6%20enabled%20Kubernetes%20cluster%20on%20MacOS"
       title="Submit to Reddit"
       aria-label="Submit to Reddit"
       >
@@ -1017,7 +1102,7 @@
       <a
       target="_blank"
       class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-      href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/kind-macos/&amp;quote="
+      href="https://www.facebook.com/sharer/sharer.php?u=https://netops2devops.net/posts/kind-macos/&amp;quote=IPv6%20enabled%20Kubernetes%20cluster%20on%20MacOS"
       title="Share on Facebook"
       aria-label="Share on Facebook"
       >
@@ -1067,10 +1152,15 @@
       <div class="flex justify-between pt-3">
         <span>
           
-        </span>
-        <span>
-          
-            <a class="flex text-right group ml-3" href="/posts/mikrotik-ipv6/">
+            <a class="flex group mr-3" href="/posts/mikrotik-ipv6/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
@@ -1082,15 +1172,10 @@
                   
                 </span>
               </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
             </a>
+          
+        </span>
+        <span>
           
         </span>
       </div>
@@ -1147,7 +1232,7 @@
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/"
+  data-url="https://netops2devops.net/"
   style="z-index:500"
 >
   <div
