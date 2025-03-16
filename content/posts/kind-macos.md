@@ -2,15 +2,15 @@
 title: IPv6 enabled Kubernetes cluster on MacOS
 date: 2025-03-15
 tags: ["Kubernetes", "IPv6", "Cilium"]
-author: "Kapil Agrawal"
+authors: ["Kapil Agrawal"]
 comments: false
 ---
 
 If you use MacOS as your daily driver and need an IPv6 capable Kubernetes cluster for local development/testing, this article is meant for you! I have been using [orbstack](https://orbstack.dev) for a few years now as a drop in replacement for Docker desktop and I have to say it's beyond impressive in terms of performance and features. My main motivation to move away from Docker desktop was the lack of support IPv6 on a MacOS and the horrendous performance. The next thing I tried was Colima which is quite flexible but still [lacks IPv6 support on MacOS](https://news.ycombinator.com/item?id=41422931).
 
-While there are multiple kubernetes distributions such as [minikube](https://github.com/kubernetes/minikube/issues/8535), [k3d](https://github.com/k3d-io/k3d/issues/833) which work quite well on a MacOS, neither of those support IPv6 😭 Eventually I ended up trying [KIND](https://kind.sigs.k8s.io) and turns out, it works perfectly fine with IPv6 and is fully customizable 🎉
+While there are multiple kubernetes distributions such as [minikube](https://github.com/kubernetes/minikube/issues/8535), [k3d](https://github.com/k3d-io/k3d/issues/833) which work quite well on a MacOS, neither of those support IPv6 😭 Eventually I ended up trying [KIND](https://kind.sigs.k8s.io) which supports with IPv6 and is fully customizable.
 
-If you look under the hood, Kubernetes is an API server which relies on composable set of components to build a distributed system. Kubernetes by itself does not handle networking just as it does not handle managing container lifecycle, it relies on a container runtime such as containerd. Similarly, k8s relies on a container network interface [CNI](https://cni.dev) which is the component that manages cluster networking and routing network traffic in and out of the cluster. But to make a Kubernetes cluster IPv6 capable, we need to install a CNI which supports IPv6. Cilium is my CNI of choice as it support IPv6, has a large community around it and is a CNCF graduate project which speaks for it's maturity. I will write more about Cilium and other CNI's in a separate blog post ;)
+If you look under the hood, Kubernetes is an API server which relies on composable set of components to build a distributed system. Kubernetes by itself does not handle networking just as it does not handle managing container lifecycle, it relies on a container runtime such as containerd. Similarly, k8s relies on a container network interface [CNI](https://cni.dev) which is the component that manages cluster networking and routing network traffic in and out of the cluster. But to make a Kubernetes cluster IPv6 capable, we need to install a CNI which supports IPv6. [Cilium](https://cilium.io) is my CNI of choice as it support IPv6, extremely well documented, has a large community around it and is a CNCF graduate project which speaks for it's maturity. I will write more about Cilium and other CNI's in a separate blog post ;)
 
 To run an IPv6 capable Kubernetes cluster on MacOS we need:
 
