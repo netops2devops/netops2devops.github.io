@@ -88,7 +88,9 @@ kubectl cluster-info --context kind-kind
 Thanks for using kind! 😊
 ```
 
-Next we install Cilium CNI with IPv6 enabled
+### Cilium
+
+Next we install Cilium CNI with IPv6 enabled. As of writing I am using Cilium version `1.17.1`
 
 ```bash
 ❯ helm install cilium cilium/cilium --namespace=kube-system --set ipv6.enabled=true
