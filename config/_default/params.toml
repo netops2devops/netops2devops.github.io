@@ -12,7 +12,7 @@ enableSearch = true
 enableCodeCopy = true
 replyByEmail = false
 
-mainSections = ["Posts"]
+mainSections = ["posts", "projects"]
 # robots = ""
 
 disableImageOptimization = false
@@ -55,7 +55,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showViews = false
   showLikes = false
   showDateOnlyInArticle = false
-  showDateUpdated = false
+  showDateUpdated = true
   showAuthor = true
   #showAuthorBottom = false
   showHero = true
