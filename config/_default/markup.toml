@@ -3,12 +3,12 @@
 
 [goldmark]
 [goldmark.renderer]
-  unsafe = true
+unsafe = true
 
 [highlight]
-  noClasses = false
-  wrapperClass = 'highlight'
+noClasses = false
+wrapperClass = 'highlight'
 
 [tableOfContents]
-  startLevel = 2
-  endLevel = 4
+startLevel = 1
+endLevel = 4

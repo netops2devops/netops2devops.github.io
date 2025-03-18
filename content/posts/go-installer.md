@@ -1,7 +1,7 @@
 ---
 title: Go installer script
 date: 2025-03-16
-tags: ["Go", "Programming"]
+tags: ["Go"]
 author: "Kapil Agrawal"
 comments: false
 ---
