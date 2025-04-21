@@ -1,0 +1,327 @@
+From baaf251bde20c4826e3815c9da23002a2466dba9 Mon Sep 17 00:00:00 2001
+From: Ryan Gibson <ryan.alexander.gibson@gmail.com>
+Date: Fri, 11 Apr 2025 09:32:47 -0400
+Subject: [PATCH 1/2] Rewrite templates/partials for Hugo v0.146.0
+
+---
+ layouts/_default/baseof.html                 | 6 +++---
+ layouts/_default/list.html                   | 6 +++---
+ layouts/_default/single.html                 | 8 ++++----
+ layouts/_default/taxonomy.html               | 6 +++---
+ layouts/_default/term.html                   | 6 +++---
+ layouts/index.html                           | 6 +++---
+ layouts/partials/article-link/simple.html    | 2 +-
+ layouts/partials/footer.html                 | 2 +-
+ layouts/partials/head.html                   | 4 ++--
+ layouts/partials/header/fixed-fill-blur.html | 2 +-
+ layouts/partials/header/fixed-fill.html      | 2 +-
+ layouts/partials/header/fixed-gradient.html  | 2 +-
+ layouts/partials/header/fixed.html           | 2 +-
+ layouts/shortcodes/figure.html               | 2 +-
+ 14 files changed, 28 insertions(+), 28 deletions(-)
+
+diff --git a/layouts/_default/baseof.html b/layouts/_default/baseof.html
+index 7a1ff83ac..5ab7bcc46 100644
+--- a/layouts/_default/baseof.html
++++ b/layouts/_default/baseof.html
+@@ -15,11 +15,11 @@
+         class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>{{ i18n
+       "nav.skip_to_main" }}</a>
+   </div>
+-  {{ $header := print "partials/header/" .Site.Params.header.layout ".html" }}
+-  {{ if templates.Exists $header }}
++  {{ $header := print "header/" .Site.Params.header.layout ".html" }}
++  {{ if templates.Exists ( printf "partials/%s" $header ) }}
+   {{ partial $header . }}
+   {{ else }}
+-  {{ partial "partials/header/basic.html" . }}
++  {{ partial "header/basic.html" . }}
+   {{ end }}
+   <div class="relative flex flex-col grow">
+     <main id="main-content" class="grow">
+diff --git a/layouts/_default/list.html b/layouts/_default/list.html
+index 7cc923889..0b7d90984 100644
+--- a/layouts/_default/list.html
++++ b/layouts/_default/list.html
+@@ -2,11 +2,11 @@
+ 
+ {{ .Scratch.Set "scope" "list" }}
+ {{ if .Site.Params.list.showHero | default false }}
+-{{ $heroStyle := print "partials/hero/" .Site.Params.list.heroStyle ".html" }}
+-{{ if templates.Exists $heroStyle }}
++{{ $heroStyle := print "hero/" .Site.Params.list.heroStyle ".html" }}
++{{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+ {{ partial $heroStyle . }}
+ {{ else }}
+-{{ partial "partials/hero/basic.html" . }}
++{{ partial "hero/basic.html" . }}
+ {{ end }}
+ {{- end -}}
+ 
+diff --git a/layouts/_default/single.html b/layouts/_default/single.html
+index 5defb34c8..a1f2e8186 100644
+--- a/layouts/_default/single.html
++++ b/layouts/_default/single.html
+@@ -5,11 +5,11 @@
+   {{ if .Params.showHero | default (.Site.Params.article.showHero | default false) }}
+   {{ $heroStyle := .Params.heroStyle }}
+   {{ if not $heroStyle }}{{ $heroStyle = .Site.Params.article.heroStyle }}{{ end }}
+-  {{ $heroStyle := print "partials/hero/" $heroStyle ".html" }}
+-  {{ if templates.Exists $heroStyle }}
++  {{ $heroStyle := print "hero/" $heroStyle ".html" }}
++  {{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+   {{ partial $heroStyle . }}
+   {{ else }}
+-  {{ partial "partials/hero/basic.html" . }}
++  {{ partial "hero/basic.html" . }}
+   {{ end }}
+   {{ end }}
+ 
+@@ -154,7 +154,7 @@ <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+ 
+     {{ partial "article-pagination.html" . }}
+     {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
+-    {{ if templates.Exists "partials/comments.html" }}
++    {{ if templates.Exists "comments.html" }}
+     <div class="pt-3">
+       <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+       <div class="pt-3">
+diff --git a/layouts/_default/taxonomy.html b/layouts/_default/taxonomy.html
+index 94859a69c..43a850dca 100644
+--- a/layouts/_default/taxonomy.html
++++ b/layouts/_default/taxonomy.html
+@@ -2,11 +2,11 @@
+ 
+ {{ .Scratch.Set "scope" "list" }}
+ {{ if .Site.Params.taxonomy.showHero | default false }}
+-{{ $heroStyle := print "partials/hero/" .Site.Params.taxonomy.heroStyle ".html" }}
+-{{ if templates.Exists $heroStyle }}
++{{ $heroStyle := print "hero/" .Site.Params.taxonomy.heroStyle ".html" }}
++{{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+ {{ partial $heroStyle . }}
+ {{ else }}
+-{{ partial "partials/hero/basic.html" . }}
++{{ partial "hero/basic.html" . }}
+ {{ end }}
+ {{- end -}}
+ 
+diff --git a/layouts/_default/term.html b/layouts/_default/term.html
+index ae8c702e5..74b9b6460 100644
+--- a/layouts/_default/term.html
++++ b/layouts/_default/term.html
+@@ -2,11 +2,11 @@
+ 
+ {{ .Scratch.Set "scope" "term" }}
+ {{ if .Site.Params.term.showHero | default false }}
+-{{ $heroStyle := print "partials/hero/" .Site.Params.term.heroStyle ".html" }}
+-{{ if templates.Exists $heroStyle }}
++{{ $heroStyle := print "hero/" .Site.Params.term.heroStyle ".html" }}
++{{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+ {{ partial $heroStyle . }}
+ {{ else }}
+-{{ partial "partials/hero/basic.html" . }}
++{{ partial "hero/basic.html" . }}
+ {{ end }}
+ {{- end -}}
+ 
+diff --git a/layouts/index.html b/layouts/index.html
+index ad851f504..3b35e78a1 100644
+--- a/layouts/index.html
++++ b/layouts/index.html
+@@ -1,8 +1,8 @@
+ {{ define "main" }}
+-  {{ $partial := print "partials/home/" .Site.Params.homepage.layout ".html" }}
+-  {{ if templates.Exists $partial }}
++  {{ $partial := print "home/" .Site.Params.homepage.layout ".html" }}
++  {{ if templates.Exists ( printf "partials/%s" $partial ) }}
+     {{ partial $partial . }}
+   {{ else }}
+-    {{ partial "partials/home/profile.html" . }}
++    {{ partial "home/profile.html" . }}
+   {{ end }}
+ {{ end }}
+diff --git a/layouts/partials/article-link/simple.html b/layouts/partials/article-link/simple.html
+index 5a3036225..5aaf18779 100644
+--- a/layouts/partials/article-link/simple.html
++++ b/layouts/partials/article-link/simple.html
+@@ -85,7 +85,7 @@
+           {{ partial "badge.html" (i18n "article.draft" | emojify) }}
+         </div>
+         {{ end }}
+-        {{ if templates.Exists "partials/extend-article-link.html" }}
++        {{ if templates.Exists "extend-article-link.html" }}
+         {{ partial "extend-article-link.html" . }}
+         {{ end }}
+       </div>
+diff --git a/layouts/partials/footer.html b/layouts/partials/footer.html
+index cce8ae9d5..4d7e80c72 100644
+--- a/layouts/partials/footer.html
++++ b/layouts/partials/footer.html
+@@ -62,7 +62,7 @@
+   {{ $jsProcess = $jsProcess | resources.Minify | resources.Fingerprint "sha512" }}
+   <script type="text/javascript" src="{{ $jsProcess.RelPermalink }}" integrity="{{ $jsProcess.Data.Integrity }}"></script>
+   {{/* Extend footer - eg. for extra scripts, etc. */}}
+-  {{ if templates.Exists "partials/extend-footer.html" }}
++  {{ if templates.Exists "extend-footer.html" }}
+   {{ partialCached "extend-footer.html" . }}
+   {{ end }}
+ </footer>
+diff --git a/layouts/partials/head.html b/layouts/partials/head.html
+index 43635eba8..57ead88de 100644
+--- a/layouts/partials/head.html
++++ b/layouts/partials/head.html
+@@ -80,7 +80,7 @@
+   <script src="{{ $zoomJS.RelPermalink }}" integrity="{{ $zoomJS.Data.Integrity }}"></script>
+   {{ end }}
+   {{/* Icons */}}
+-  {{ if templates.Exists "partials/favicons.html" }}
++  {{ if templates.Exists "favicons.html" }}
+   {{ partialCached "favicons.html" .Site }}
+   {{ else }}
+   <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+@@ -123,7 +123,7 @@
+   {{/* Analytics */}}
+   {{ partial "analytics/main.html" .Site }}
+   {{/* Extend head - eg. for custom analytics scripts, etc. */}}
+-  {{ if templates.Exists "partials/extend-head.html" }}
++  {{ if templates.Exists "extend-head.html" }}
+   {{ partialCached "extend-head.html" .Site }}
+   {{ end }}
+   <meta name="theme-color"/>
+diff --git a/layouts/partials/header/fixed-fill-blur.html b/layouts/partials/header/fixed-fill-blur.html
+index 534fe9895..02160bfe4 100644
+--- a/layouts/partials/header/fixed-fill-blur.html
++++ b/layouts/partials/header/fixed-fill-blur.html
+@@ -2,7 +2,7 @@
+ <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom bg-neutral dark:bg-neutral-800"></div>
+   <div class="relative max-w-[64rem] ml-auto mr-auto">
+-    {{ partial "partials/header/basic.html" . }}
++    {{ partial "header/basic.html" . }}
+   </div>
+ </div>
+ <script>
+diff --git a/layouts/partials/header/fixed-fill.html b/layouts/partials/header/fixed-fill.html
+index 4d73a1f43..2cad3db5a 100644
+--- a/layouts/partials/header/fixed-fill.html
++++ b/layouts/partials/header/fixed-fill.html
+@@ -1,6 +1,6 @@
+ <div class="min-h-[148px]"></div>
+ <div class="fixed inset-x-0 pl-[24px] pr-[24px] bg-neutral dark:bg-neutral-800" style="z-index:100">
+   <div class="relative max-w-[64rem] ml-auto mr-auto">
+-    {{ partial "partials/header/basic.html" . }}
++    {{ partial "header/basic.html" . }}
+   </div>
+ </div>
+diff --git a/layouts/partials/header/fixed-gradient.html b/layouts/partials/header/fixed-gradient.html
+index 7085b8a74..2e1301a42 100644
+--- a/layouts/partials/header/fixed-gradient.html
++++ b/layouts/partials/header/fixed-gradient.html
+@@ -3,7 +3,7 @@
+ <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+   <div class="relative max-w-[64rem] ml-auto mr-auto">
+-    {{ partial "partials/header/basic.html" . }}
++    {{ partial "header/basic.html" . }}
+   </div>
+ </div>
+ <script>
+diff --git a/layouts/partials/header/fixed.html b/layouts/partials/header/fixed.html
+index 8e3f64d5c..eee26d9d4 100644
+--- a/layouts/partials/header/fixed.html
++++ b/layouts/partials/header/fixed.html
+@@ -2,7 +2,7 @@
+ <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+   <div class="relative max-w-[64rem] ml-auto mr-auto">
+-    {{ partial "partials/header/basic.html" . }}
++    {{ partial "header/basic.html" . }}
+   </div>
+ </div>
+ <script>
+diff --git a/layouts/shortcodes/figure.html b/layouts/shortcodes/figure.html
+index fb7293c8f..030cfce91 100644
+--- a/layouts/shortcodes/figure.html
++++ b/layouts/shortcodes/figure.html
+@@ -1,6 +1,6 @@
+ {{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
+ {{ if .Get "default" }}
+-  {{ template "_internal/shortcodes/figure.html" . }}
++  {{ partial "shortcodes/figure.html" . }}
+ {{ else }}
+   {{- $url := urls.Parse (.Get "src") }}
+   {{- $altText := .Get "alt" }}
+
+From 6cfea9bfd1f572959875987ac64cd15430d35302 Mon Sep 17 00:00:00 2001
+From: Ryan Gibson <ryan.alexander.gibson@gmail.com>
+Date: Fri, 11 Apr 2025 16:22:04 -0400
+Subject: [PATCH 2/2] Add "partials/" to static templates.Exists
+
+---
+ layouts/_default/single.html              | 2 +-
+ layouts/partials/article-link/simple.html | 2 +-
+ layouts/partials/footer.html              | 2 +-
+ layouts/partials/head.html                | 4 ++--
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/layouts/_default/single.html b/layouts/_default/single.html
+index a1f2e8186..c0a66f788 100644
+--- a/layouts/_default/single.html
++++ b/layouts/_default/single.html
+@@ -154,7 +154,7 @@ <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+ 
+     {{ partial "article-pagination.html" . }}
+     {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
+-    {{ if templates.Exists "comments.html" }}
++    {{ if templates.Exists "partials/comments.html" }}
+     <div class="pt-3">
+       <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+       <div class="pt-3">
+diff --git a/layouts/partials/article-link/simple.html b/layouts/partials/article-link/simple.html
+index 5aaf18779..5a3036225 100644
+--- a/layouts/partials/article-link/simple.html
++++ b/layouts/partials/article-link/simple.html
+@@ -85,7 +85,7 @@
+           {{ partial "badge.html" (i18n "article.draft" | emojify) }}
+         </div>
+         {{ end }}
+-        {{ if templates.Exists "extend-article-link.html" }}
++        {{ if templates.Exists "partials/extend-article-link.html" }}
+         {{ partial "extend-article-link.html" . }}
+         {{ end }}
+       </div>
+diff --git a/layouts/partials/footer.html b/layouts/partials/footer.html
+index 4d7e80c72..cce8ae9d5 100644
+--- a/layouts/partials/footer.html
++++ b/layouts/partials/footer.html
+@@ -62,7 +62,7 @@
+   {{ $jsProcess = $jsProcess | resources.Minify | resources.Fingerprint "sha512" }}
+   <script type="text/javascript" src="{{ $jsProcess.RelPermalink }}" integrity="{{ $jsProcess.Data.Integrity }}"></script>
+   {{/* Extend footer - eg. for extra scripts, etc. */}}
+-  {{ if templates.Exists "extend-footer.html" }}
++  {{ if templates.Exists "partials/extend-footer.html" }}
+   {{ partialCached "extend-footer.html" . }}
+   {{ end }}
+ </footer>
+diff --git a/layouts/partials/head.html b/layouts/partials/head.html
+index 57ead88de..43635eba8 100644
+--- a/layouts/partials/head.html
++++ b/layouts/partials/head.html
+@@ -80,7 +80,7 @@
+   <script src="{{ $zoomJS.RelPermalink }}" integrity="{{ $zoomJS.Data.Integrity }}"></script>
+   {{ end }}
+   {{/* Icons */}}
+-  {{ if templates.Exists "favicons.html" }}
++  {{ if templates.Exists "partials/favicons.html" }}
+   {{ partialCached "favicons.html" .Site }}
+   {{ else }}
+   <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+@@ -123,7 +123,7 @@
+   {{/* Analytics */}}
+   {{ partial "analytics/main.html" .Site }}
+   {{/* Extend head - eg. for custom analytics scripts, etc. */}}
+-  {{ if templates.Exists "extend-head.html" }}
++  {{ if templates.Exists "partials/extend-head.html" }}
+   {{ partialCached "extend-head.html" .Site }}
+   {{ end }}
+   <meta name="theme-color"/>
