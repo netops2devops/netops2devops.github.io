@@ -18,7 +18,8 @@ In this blog post I cover how I am running [Cilium](https://cilium.io) as a stan
 
 Before we get to the real meat and potatoes we need to do some prep work.
 
-- Provision a VM - I am using Ubuntu 22.04LTS with kernel version 5.15.0-138-generic in my setup.
+- Create a VM for the NAT46x64Gateway - I am using Ubuntu 22.04LTS with kernel version 5.15.0-138-generic in my setup.
+- [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the VM
 - Configure networking - A `NAT46x64Gateway` must be dual stacked as it acts as a bridge between IPv4 and IPv6 networks. Here's an example netplan config I am using.
 
 ```yaml
@@ -80,7 +81,7 @@ root@nat64gw:~# docker exec -it cilium-lb cilium status --verbose | awk "/NAT46\
 A good test to check if our NAT46x64Gateway is performing the 4to6 translation correctly, we can try connecting to an application that is accessible only via IPv4. So let's provision another Ubuntu VM on our IPv6 only network with the following netplan config as shown below.
 
 ```yaml
-root@controller:/home/kagraw# cat /etc/netplan/00-installer-config.yaml
+root@testvm# cat /etc/netplan/00-installer-config.yaml
 network:
     version: 2
     renderer: networkd

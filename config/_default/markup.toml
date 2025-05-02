@@ -5,9 +5,6 @@
 [goldmark.renderer]
 unsafe = true
 
-[goldmark.parser.attribute]
-block = true
-
 [highlight]
 noClasses = false
 wrapperClass = 'highlight'
