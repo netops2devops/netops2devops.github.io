@@ -1,3 +1,10 @@
+---
+title: About
+date: 2025-01-01
+authors: ["Kapil Agrawal"]
+comments: false
+---
+
 # Hello world
 
 Welcome to my blog. I am a Platform Security Engineer by profession. I also have an extensive background in Network Engineering and Infrastructure automation. Generally speaking, I enjoy learning and working at the intersection of networking, systems, software & security. During my downtime I enjoy amateur boxing, working on my homelab, traveling, hiking or kayaking.
