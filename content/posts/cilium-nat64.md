@@ -112,7 +112,7 @@ Example:
 google.com has both an A record and a AAAA record.
 
 ```sh
-root@testvm:/home/kagraw# host google.com
+root@testvm# host google.com
 google.com has address 142.250.190.78
 google.com has IPv6 address 2607:f8b0:4009:803::200e
 ```
@@ -120,7 +120,7 @@ google.com has IPv6 address 2607:f8b0:4009:803::200e
 github.com only has an A record but since we're using a DNS64 server we receive a (translated) AAAA record as well.
 
 ```sh
-root@testvm:/home/kagraw# host github.com
+root@testvm# host github.com
 github.com has address 140.82.113.4
 github.com has IPv6 address 64:ff9b::8c52:7104
 ```
@@ -134,7 +134,7 @@ github.com has IPv6 address 64:ff9b::8c52:7104
 Our moment of truth has finally arrived ⏳
 
 ```sh
-root@testvm:/home/kagraw# curl -6 -v github.com
+root@testvm# curl -6 -v github.com
 *   Trying 64:ff9b::8c52:7104:80...
 * Connected to github.com (64:ff9b::8c52:7104) port 80 (#0)
 > GET / HTTP/1.1
