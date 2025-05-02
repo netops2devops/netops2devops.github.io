@@ -57,13 +57,27 @@ docker run --name cilium-lb -itd \
 	"quay.io/cilium/cilium:stable" cilium-agent --enable-ipv4=true --enable-ipv6=true --devices=eth0 --datapath-mode=lb-only --enable-k8s=false --bpf-lb-mode=snat --enable-nat46x64-gateway=true
 ```
 
+To check the status of our standalone cilium install with NAT64 enabled
+
+```sh
+root@nat64gw:~# docker exec -it cilium-lb cilium status --verbose | awk "/NAT46\/64/ {found=1} found"
+  NAT46/64 Support:
+  - Services:         Enabled
+  - Gateway:          Enabled
+    Prefixes:         64:ff9b::/96
+  XDP Acceleration:   Disabled
+  Services:
+  - ClusterIP:      Enabled
+  - NodePort:       Enabled (Range: 30000-32767)
+  - LoadBalancer:   Enabled
+  - externalIPs:    Enabled
+  - HostPort:       Disabled
+... snipped ...
+```
+
 ## Test
 
-Let's create another Ubuntu VM as a test host with an IPv6 only address that points to our NAT46x64Gateway. Few noteworthy points in the netplan config shared below.
-
-- The two nameservers are DNS64 servers from dns64.cloudflare-dns.com and dns64.dns.google respectively. You can use any dns server which has dns64 capability.When a client queries a DNS64 server for a hostname which only has an A record setup, the dns64 server sends a response containing the corresponding IPv4 address as well as a translated IPv6 address.
-
-- static route to `64::ff9b/96` which is a special prefix that is used by IPv4/IPv6 translators as defined in [RFC6502](https://datatracker.ietf.org/doc/html/rfc6052). When the DNS64 server responds with the translated IPv6 address, our VM will forward the packet to our NAT46x64Gateway i.e `2001:db8:abcd::2`
+A good test to check if our NAT46x64Gateway is performing the 4to6 translation correctly, we can try connecting to an application that is accessible only via IPv4. So let's provision another Ubuntu VM on our IPv6 only network with the following netplan config as shown below.
 
 ```yaml
 root@controller:/home/kagraw# cat /etc/netplan/00-installer-config.yaml
@@ -89,12 +103,16 @@ network:
             via: 2001:db8:abcd::2
 ```
 
+Few noteworthy points:
+
+- The two nameservers are DNS64 servers from dns64.cloudflare-dns.com and dns64.dns.google respectively. You can use any dns server which has dns64 capability. When a client queries a DNS64 server for a hostname which only has an A record setup, the dns64 server sends a response containing the corresponding IPv4 address as well as a translated IPv6 address.
+
 Example:
 
 google.com has both an A record and a AAAA record.
 
 ```sh
-root@controller:/home/kagraw# host google.com
+root@testvm:/home/kagraw# host google.com
 google.com has address 142.250.190.78
 google.com has IPv6 address 2607:f8b0:4009:803::200e
 ```
@@ -102,15 +120,21 @@ google.com has IPv6 address 2607:f8b0:4009:803::200e
 github.com only has an A record but since we're using a DNS64 server we receive a (translated) AAAA record as well.
 
 ```sh
-root@controller:/home/kagraw# host github.com
+root@testvm:/home/kagraw# host github.com
 github.com has address 140.82.113.4
 github.com has IPv6 address 64:ff9b::8c52:7104
 ```
 
-But since we have a static route to 64:ff9b::/96, any traffic going to github (64:ff9b::8c52:7203) will be forwarded via `2001:db8:abcd::2` i.e our Cilium based NAT46x64Gateway.
+- Static route to `64::ff9b/96` which is a special prefix that is used by IPv4/IPv6 translators as defined in [RFC6502](https://datatracker.ietf.org/doc/html/rfc6052). When the DNS64 server responds with the translated IPv6 address, our ipv6 only test host looks up it's routing table and forwards the packet directly to our NAT46x64Gateway i.e `2001:db8:abcd::2`
+
+{{< alert >}}
+**Note!** Using a static route is not a hard requirement. The bottom line is that your router needs to know where to forward IPv6 packets going to `64:ff9b::/96` i.e what the next hop is.
+{{< /alert >}}
+
+Our moment of truth has finally arrived ⏳
 
 ```sh
-root@controller:/home/kagraw# curl -6 -v github.com
+root@testvm:/home/kagraw# curl -6 -v github.com
 *   Trying 64:ff9b::8c52:7104:80...
 * Connected to github.com (64:ff9b::8c52:7104) port 80 (#0)
 > GET / HTTP/1.1
@@ -126,4 +150,4 @@ root@controller:/home/kagraw# curl -6 -v github.com
 * Connection #0 to host github.com left intact
 ```
 
-and Voila!🍾 our Cilium based NAT46x64Gateway is up and running!
+Voila!🍾 our Cilium based NAT46x64Gateway is up and running!
