@@ -12,6 +12,8 @@ IPv4 and IPv6 are two different protocols they are incompatible with one another
 
 In this blog post I cover how I am running [Cilium](https://cilium.io) as a standalone NAT46x64 gateway which harnesses the power of [eBPF](https://docs.ebpf.io) in the linux kernel. Cilium is a CNCF graduate project which brings advanced networking capabilities to Kubernetes. While it is most commonly used as a CNI (Container Network Interface), not much has been documented about it's capabilities outside of Kubernetes, specially as a standalone NAT46x64 gateway. For my fellow kernel nerds and C lovers, Cilium's NAT46x64 implementation can be found [here](https://github.com/cilium/cilium/blob/main/bpf/lib/nat_46x64.h)
 
+![Alt Text](img/cilium-nat64.png)
+
 ## Configuration
 
 Before we get to the real meat and potatoes we need to do some prep work.
