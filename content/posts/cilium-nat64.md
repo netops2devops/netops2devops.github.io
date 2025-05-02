@@ -81,27 +81,26 @@ root@nat64gw:~# docker exec -it cilium-lb cilium status --verbose | awk "/NAT46\
 A good test to check if our NAT46x64Gateway is performing the 4to6 translation correctly, we can try connecting to an application that is accessible only via IPv4. So let's provision another Ubuntu VM on our IPv6 only network with the following netplan config as shown below.
 
 ```yaml
-root@testvm# cat /etc/netplan/00-installer-config.yaml
 network:
-    version: 2
-    renderer: networkd
-    ethernets:
-      ens18:
-        set-name: eth0
-        match:
-          macaddress: bc:24:11:55:02:a5
-        accept-ra: false
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens18:
+      set-name: eth0
+      match:
+        macaddress: bc:24:11:55:02:a5
+      accept-ra: false
+      addresses:
+        - 2001:db8:dead:beef::2/64
+      nameservers:
         addresses:
-          - 2001:db8:dead:beef::2/64
-        nameservers:
-          addresses:
-            - 2606:4700:4700::64
-            - 2001:4860:4860::64
-        routes:
-          - to: default
-            via: 2001:db8:dead:beef::1
-          - to: 64:ff9b::/96
-            via: 2001:db8:abcd::2
+          - 2606:4700:4700::64
+          - 2001:4860:4860::64
+      routes:
+        - to: default
+          via: 2001:db8:dead:beef::1
+        - to: 64:ff9b::/96
+          via: 2001:db8:abcd::2
 ```
 
 Few noteworthy points:
