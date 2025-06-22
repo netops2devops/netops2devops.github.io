@@ -602,7 +602,7 @@ Use a value receiver when :
 
 A method with a value receiver can’t check for nil and panics if invoked with a nil receiver
 
-```
+```go
 type Person struct{
 	Name string
 	Age int
