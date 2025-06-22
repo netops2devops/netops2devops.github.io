@@ -514,7 +514,7 @@ https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers
 ## Maps and Structs under the hood
 
 - While maps may resemble to dictionary type in Python but they're not the same.
-- Within the Go runtime, a map is implemented as a pointer to a struct. Passing a map to a function means that you are copying a pointer and which is why you should consider carefully before using maps for function input parameters or return values.
+- Within the Go runtime, a map is implemented as a pointer to a struct. Passing a map to a function means that you are copying a pointer and which is why you should consider carefully before using maps for function input parameters or return values. Changing the `map[key]:value` passed as function parameter will result in changing the original map data which can have unintended consequences.
 - Passing around Maps in function calls is discouraged because they say nothing about the values contained within; nothing explicitly defines any keys in the map, so the only way to know what they are is to trace through the code.
 - Go is a strictly typed language and it likes to be explicit about everything.
 - If you need to pass around a data structure with key:value pairs, instead of passing a map consider using struct or a slice of structs.
@@ -599,6 +599,33 @@ Use a value receiver when :
 > - Your struct is small
 > - You do not intend to modify the receiver
 > - The receiver is a map, a func, a chan, a slice, a string, or an interface value (because internally it’s already a pointer)
+
+A method with a value receiver can’t check for nil and panics if invoked with a nil receiver
+
+```
+type Person struct{
+	Name string
+	Age int
+}
+
+func (p Person) AllowedToDrive() bool{
+	if p.Age < 18 {
+		return false
+	}
+
+	return true
+}
+
+func main(){
+	// pointer variable points to data of type Person. p is declared but not initialized. Current value is nil
+	var p *Person
+
+	// panics because inside the receiver function we're de-referencing value (nil) which doesn't exist
+	fmt.Println(p.AllowedToDrive())
+}
+```
+
+But what happens if we declared `p` as `var p Person` instead? In that case default value of `p` will be the zero value of the fields inside the `Person` struct.
 
 ## Interfaces
 
