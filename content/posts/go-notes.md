@@ -627,6 +627,12 @@ func main(){
 
 But what happens if we declared `p` as `var p Person` instead? In that case default value of `p` will be the zero value of the fields inside the `Person` struct.
 
+### Using functions vs. methods
+
+> - Anytime your business logic depends on values that are configured at startup or changed while your program is running, those values should be stored in a struct, and that logic should be implemented as a method.
+
+> - If your logic depends only on the input parameters, it should be a function
+
 ## Interfaces
 
 - An interface is like an abstract class in Python.
