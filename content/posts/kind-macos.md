@@ -1,6 +1,6 @@
 ---
 title: Kubernetes with IPv6 on MacOS
-date: 2025-03-15
+date: 2025-08-13
 tags: ["Kubernetes", "IPv6", "Cilium"]
 authors: ["Kapil Agrawal"]
 comments: false
@@ -51,30 +51,30 @@ Create a file named `kind-config.yaml` to pre-configure KIND with the following 
 
 ```YAML
 ---
-kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
 name: kind
 runtimeConfig:
   "api/alpha": "false"
 networking:
+  apiServerAddress: "::1"
   apiServerPort: 6443
-  ipFamily: dual
+  ipFamily: ipv6
   disableDefaultCNI: true
-  # IPv6 prefix must be specified first
-  serviceSubnet: fd00:10:96::/112,10.96.0.0/16
+  serviceSubnet: "fd00:10:96::/112"
 nodes:
   - role: control-plane
   - role: worker
   - role: worker
 ```
 
-Bootstrap the cluster.
+Let's bootstrap the cluster. This will create a set of cluster nodes that are IPv6 only and all our internal kubernetes services (apiServer, etcd, kube-proxy etc.) will listen on IPv6 instead of IPv4.
 
 ```bash
 # Creates a new cluster with our custom config
 ❯ kind create cluster --config kind-config.yaml
 Creating cluster "kind" ...
- ✓ Ensuring node image (kindest/node:v1.32.2) 🖼
+ ✓ Ensuring node image (kindest/node:v1.33.1) 🖼
  ✓ Preparing nodes 📦 📦 📦
  ✓ Writing configuration 📜
  ✓ Starting control-plane 🕹️
@@ -90,10 +90,14 @@ Thanks for using kind! 😊
 
 ### Cilium
 
-Next we install Cilium CNI with IPv6 enabled. As of writing I am using Cilium version `1.17.1`
+Next we need to install Cilium CNI with IPv6 enabled. As of writing I am using Cilium version `1.18.0`. Notice that I am disabling IPv4 since our cluster nodes and internal cluster services are configured to work with IPv6 only as discussed above.
 
 ```bash
-❯ helm install cilium cilium/cilium --namespace=kube-system --set ipv6.enabled=true
+❯ helm install cilium cilium/cilium -n kube-system \
+      --version 1.18.0 \
+      --set ipv6.enabled=true \
+      --set ipv4.enabled=false \
+      --set underlayProtocol=ipv6
 ```
 
 Optionally, we can enable Hubble as well!
@@ -101,7 +105,7 @@ Optionally, we can enable Hubble as well!
 ```bash
 ❯ helm upgrade -n kube-system \
     cilium cilium/cilium \
-  --reuse-values --version 1.17.1 \
+  --reuse-values --version 1.18.0 \
   --set hubble.relay.enabled=true \
   --set hubble.ui.enabled=true
 ```
@@ -111,11 +115,12 @@ The installation takes about 2-3 mins. We can monitor progress using the followi
 ```sh
 ❯ cilium status --wait
 
-❯ kubectl get nodes -o wide | awk '{print $1, $2, $3, $5, $6}' | column -t
+❯ k get nodes -o wide | awk '{print $1, $2, $3, $5, $6}' | column -t
 NAME                STATUS  ROLES          VERSION  INTERNAL-IP
-kind-control-plane  Ready   control-plane  v1.32.2  fc00:f853:ccd:e793::2
-kind-worker         Ready   worker         v1.32.2  fc00:f853:ccd:e793::3
-kind-worker2        Ready   worker         v1.32.2  fc00:f853:ccd:e793::4
+kind-control-plane  Ready   control-plane  v1.33.1  fc00:f853:ccd:e793::2
+kind-worker         Ready   worker         v1.33.1  fc00:f853:ccd:e793::3
+kind-worker2        Ready   worker         v1.33.1  fc00:f853:ccd:e793::4
+
 ```
 
 Now let's try deploying a simple application and verify connectivity over IPv6.
