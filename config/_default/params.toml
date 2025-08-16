@@ -78,7 +78,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showTaxonomies = false
   showAuthorsBadges = false
   showWordCount = false
-  sharingLinks = [ "linkedin", "twitter", "bluesky", "mastodon", "reddit","facebook"]
+  sharingLinks = [ "linkedin", "twitter", "bluesky", "reddit", "facebook"]
   showZenMode = true
 
 [list]
@@ -118,11 +118,11 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showViews = false
   showLikes = false
   showTableOfContents = true
-  groupByYear = false
+  groupByYear = true
   cardView = false
   cardViewScreenWidth = false
 
-[firebase]
+#[firebase]
   # apiKey = "XXXXXX"
   # authDomain = "XXXXXX"
   # projectId = "XXXXXX"
@@ -131,35 +131,21 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   # appId = "XXXXXX"
   # measurementId = "XXXXXX"
 
-[fathomAnalytics]
-  # site = "ABC12345"
-  # domain = "llama.yoursite.com"
 
-[umamiAnalytics]
-  # websiteid = "ABC12345"
-  # domain = "llama.yoursite.com"
-  # dataDomains = "yoursite.com,yoursite2.com"
-  # scriptName = ""
-  # enableTrackEvent = true
-
-[selineAnalytics]
-  # token = "XXXXXX"
-  # enableTrackEvent = true
-
-[buymeacoffee]
+#[buymeacoffee]
   # identifier = ""
   # globalWidget = true
   # globalWidgetMessage = "Hello"
   # globalWidgetColor = "#FFDD00"
   # globalWidgetPosition = "Right"
 
-[verification]
+#[verification]
   # google = ""
   # bing = ""
   # pinterest = ""
   # yandex = ""
   # fediverse = ""
 
-[rssnext]
+#[rssnext]
   # feedId = ""
   # userId = ""

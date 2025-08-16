@@ -16,8 +16,6 @@ buildFuture = false
 
 enableEmoji = true
 
-# googleAnalytics = "G-XXXXXXXXX"
-
 [pagination]
 pagerSize = 10
 
@@ -42,20 +40,20 @@ home = ["HTML", "RSS", "JSON"]
 threshold = 0
 toLower = false
 
-[[related.indices]]
-name = "tags"
-weight = 100
+  [[related.indices]]
+    name = "tags"
+    weight = 100
 
-[[related.indices]]
-name = "categories"
-weight = 100
+  [[related.indices]]
+    name = "categories"
+    weight = 100
 
-[[related.indices]]
-name = "series"
-weight = 50
+  [[related.indices]]
+    name = "series"
+    weight = 50
 
-[[related.indices]]
-applyFilter = false
-name = 'fragmentrefs'
-type = 'fragments'
-weight = 10
+  [[related.indices]]
+    applyFilter = false
+    name = 'fragmentrefs'
+    type = 'fragments'
+    weight = 10

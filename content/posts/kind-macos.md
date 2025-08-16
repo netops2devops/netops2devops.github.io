@@ -115,7 +115,7 @@ The installation takes about 2-3 mins. We can monitor progress using the followi
 ```sh
 ❯ cilium status --wait
 
-❯ k get nodes -o wide | awk '{print $1, $2, $3, $5, $6}' | column -t
+❯ kubectl get nodes -o wide | awk '{print $1, $2, $3, $5, $6}' | column -t
 NAME                STATUS  ROLES          VERSION  INTERNAL-IP
 kind-control-plane  Ready   control-plane  v1.33.1  fc00:f853:ccd:e793::2
 kind-worker         Ready   worker         v1.33.1  fc00:f853:ccd:e793::3

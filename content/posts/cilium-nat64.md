@@ -30,20 +30,20 @@ network:
     ens18:
       set-name: eth0
       match:
-        macaddress: bc:24:11:ee:19:90
+        macaddress: "bc:24:11:ee:19:90"
       accept-ra: false
       addresses:
-        - 192.168.2.10/24
-        - 2001:db8:abcd::2/64
+        - "192.168.2.10/24"
+        - "2001:db8:abcd::2/64"
       nameservers:
         addresses:
-          - 1.1.1.1
-          - 2606:4700:4700::64
+          - "1.1.1.1"
+          - "2606:4700:4700::64"
       routes:
         - to: default
-          via: 192.168.2.1
+          via: "192.168.2.1"
         - to: default
-          via: 2001:db8:abcd::1/64
+          via: "2001:db8:abcd::1/64"
 ```
 
 To get Cilium up and running as a NAT46x64Gateway simply run the Cilium container image with the following options. Notice that we're running cilium with `enabled-k8s=false`. Also pay special attention to `--devices` flag as it must match the interface name (eth0) from our netplan config above. Traffic entering/leaving this interface will be subject to translation.
@@ -73,7 +73,7 @@ root@nat64gw:~# docker exec -it cilium-lb cilium status --verbose | awk "/NAT46\
   - LoadBalancer:   Enabled
   - externalIPs:    Enabled
   - HostPort:       Disabled
-... snipped ...
+
 ```
 
 ## Test
@@ -88,19 +88,19 @@ network:
     ens18:
       set-name: eth0
       match:
-        macaddress: bc:24:11:55:02:a5
+        macaddress: "bc:24:11:55:02:a5"
       accept-ra: false
       addresses:
-        - 2001:db8:dead:beef::2/64
+        - "2001:db8:dead:beef::2/64"
       nameservers:
         addresses:
-          - 2606:4700:4700::64
-          - 2001:4860:4860::64
+          - "2606:4700:4700::64"
+          - "2001:4860:4860::64"
       routes:
         - to: default
-          via: 2001:db8:dead:beef::1
-        - to: 64:ff9b::/96
-          via: 2001:db8:abcd::2
+          via: "2001:db8:dead:beef::1"
+        - to: "64:ff9b::/96"
+          via: "2001:db8:abcd::2"
 ```
 
 Few noteworthy points:
