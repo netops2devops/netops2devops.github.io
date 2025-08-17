@@ -6,9 +6,9 @@ author: "Kapil Agrawal"
 comments: false
 ---
 
-**etcd** is the de-facto KV store for Kubernetes. **k3s** can be run with an embedded etcd as it's KV store which is a great option for running production grade and highly available Kubernetes while keeping overall architecture simple.
+[etcd](https://etcd.io) is the de-facto KV store for Kubernetes. [k3s](https://k3s.io) can be run with an embedded etcd as it's KV store which is a great option for running production grade and highly available Kubernetes while keeping overall architecture simple.
 
-There may be situations when you want to interact with it directly in situations like disaster recovery, troubleshooting cluster issues. etcd sync related issues, control leader election, predictability over quorum etc. Accessing the embedded **etcd** is quite trivial although k3s docs do not explain how to do so. All you really need is the `etcdctl` binary.
+There may be situations when you want to interact with it directly in situations like disaster recovery, troubleshooting cluster issues. etcd sync related issues, control leader election, predictability over quorum etc. Accessing the embedded etcd is _trivial_ although k3s docs do not explain how to do so. All you really need is the `etcdctl` binary. As I said, it's _trivial_ 😉
 
 Unlike RKE2, k3s does not provide with `etcdctl` client binary during installation so it needs to be installed separately. Below is a simple shell script which downloads the `etcdctl` binary.
 
