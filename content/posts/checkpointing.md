@@ -6,18 +6,26 @@ authors: ["Kapil Agrawal"]
 comments: false
 ---
 
+A checkpoint involves taking a snapshot of a running process or a set of processes and save their entire state to disk as a collection of files, known as image files. This state includes memory contents, open file descriptors, network connections, CPU registers, and other process-related information.Kubernetes v1.25 introduced the concept of creating stateful container checkpoints for forensic analysis without stopping a pod. In this blog post I am going to cover the steps involved with checkpointing a pod running on k3s cluster.
+
 ## Identify our Pod of interest
 
-Find the node where the pod is currently running
+Let's say we want to checkpoint our `netshoot` pod. First we need to locate the node where the pod is currently running
 
 ```sh
 kubectl get pod -o wide
+NAME                           READY   STATUS    RESTARTS      AGE    IP          NODE      NOMINATED NODE   READINESS GATES
+hello-world-5566b798fc-47gtp   1/1     Running   1 (41h ago)   3d3h   fd00::1d1   x86-dev   <none>           <none>
+netshoot                       1/1     Running   1 (39h ago)   39h    fd00::1ea   x86-dev   <none>           <none>
+
 ```
 
 Locate the container id of the Pod
 
 ```sh
-kubectl desribe pod PODNAME | grep -i "Container ID"
+❯ kubectl describe pod netshoot | grep -i "Container ID"
+    Container ID:   containerd://c371c62bf021a0cf05f0382b101f3694a46eaf373621c2cf94990a0b0926a133
+
 ```
 
 ## Requirements
@@ -69,6 +77,8 @@ lrwxrwxrwx 1 root root 7 Sep  6 19:27 tar -> busybox*
 
 ## Checkpoint a running pod on a K3s node
 
+Notice the filename and path of the cert, key and cacert. This will likely be different for other kubernetes distributions. When in doubt, RTFM :-)
+
 ```sh
 curl -q -s --insecure \
 --cert /var/lib/rancher/k3s/agent/client-kubelet.crt \
@@ -79,7 +89,7 @@ curl -q -s --insecure \
 
 ## Example
 
-Try checkpointing a running netshoot pod
+Let's try checkpointing our netshoot pod
 
 ```sh
 [root@x86-dev:~] curl -q -s --insecure \
@@ -111,7 +121,7 @@ default     netshoot   netshoot    containerd   13 Sep 25 18:09 CDT   checkpoint
 
 ```
 
-Inspecting a checkpoint image
+### Inspecting a checkpoint image
 
 ```sh
 [root@x86-dev:~] checkpointctl inspect \
@@ -125,7 +135,7 @@ Inspecting a checkpoint image
 checkpoint-netshoot_default-netshoot-2025-09-13T18:09:15-05:00.tar
 ```
 
-Show memory dump
+### Show memory dump
 
 ```sh
 # kubelet stores checkpoint under /var/lib/kubelet/checkpoints/
@@ -140,5 +150,6 @@ Show memory dump
 --
 
 - https://kubernetes.io/docs/reference/node/kubelet-checkpoint-api/
+- https://kubernetes.io/blog/2022/12/05/forensic-container-checkpointing-alpha/
 - https://criu.org/Containerd
 - https://github.com/checkpoint-restore
