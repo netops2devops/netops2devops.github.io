@@ -1,5 +1,5 @@
 ---
-title: Forensic container checkpointing in Kubernetes
+title: Container Checkpointing in K3s for Forensics
 date: 2025-09-14
 tags: ["security", "kubernetes"]
 authors: ["Kapil Agrawal"]
