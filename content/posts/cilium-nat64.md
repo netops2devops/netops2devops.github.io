@@ -55,7 +55,7 @@ docker run --name cilium-lb -itd \
 	--privileged=true \
 	--restart=always \
 	--network=host \
-	"quay.io/cilium/cilium:stable" cilium-agent --enable-ipv4=true --enable-ipv6=true --devices=eth0 --datapath-mode=lb-only --enable-k8s=false --bpf-lb-mode=snat --enable-nat46x64-gateway=true
+	"quay.io/cilium/cilium:v.17.7" cilium-agent --enable-ipv4=true --enable-ipv6=true --devices=eth0 --datapath-mode=lb-only --enable-k8s=false --bpf-lb-mode=snat --enable-nat46x64-gateway=true
 ```
 
 To check the status of our standalone cilium install with NAT64 enabled
