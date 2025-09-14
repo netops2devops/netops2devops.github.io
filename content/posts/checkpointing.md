@@ -6,7 +6,7 @@ authors: ["Kapil Agrawal"]
 comments: false
 ---
 
-A checkpoint involves taking a snapshot of a running process or a set of processes and save their entire state to disk as a collection of files, known as image files. This state includes memory contents, open file descriptors, network connections, CPU registers, and other process-related information.Kubernetes v1.25 introduced the concept of creating stateful container checkpoints for forensic analysis without stopping a pod. In this blog post I am going to cover the steps involved with checkpointing a pod running on k3s cluster.
+A checkpoint involves taking a snapshot of a running process or a set of processes and save their entire state to disk as a collection of files, known as image files. This state includes memory contents, open file descriptors, network connections, CPU registers, and other process-related information. Checkpointing a running Pod was introduced in Kubernetes v1.25. In this blog post I am going to cover the steps involved with checkpointing a pod running on my K3s cluster.
 
 ## Identify our Pod of interest
 
