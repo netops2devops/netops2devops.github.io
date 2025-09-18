@@ -18,7 +18,7 @@ In this blog post I cover how I am running [Cilium](https://cilium.io) as a stan
 
 Before we get to the real meat and potatoes we need to do some prep work.
 
-- Create a VM for the NAT46x64Gateway - I am using Ubuntu 22.04LTS with kernel version 5.15.0-138-generic in my setup.
+- Create a VM for the NAT46x64Gateway - I am using Ubuntu 24.04.03 LTS with kernel version 6.8.0-83-generic
 - [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the VM
 - Configure networking - A `NAT46x64Gateway` must be dual stacked as it acts as a bridge between IPv4 and IPv6 networks. Here's an example netplan config I am using.
 
@@ -33,8 +33,8 @@ network:
         macaddress: "bc:24:11:ee:19:90"
       accept-ra: false
       addresses:
-        - "192.168.2.10/24"
-        - "2001:db8:abcd::2/64"
+        - "192.168.64.2/24"
+        - "2001:db8:46:64::2/64"
       nameservers:
         addresses:
           - "1.1.1.1"
@@ -43,25 +43,59 @@ network:
         - to: default
           via: "192.168.2.1"
         - to: default
-          via: "2001:db8:abcd::1/64"
+          via: "2001:db8:46:64::1"
 ```
 
 To get Cilium up and running as a NAT46x64Gateway simply run the Cilium container image with the following options. Notice that we're running cilium with `enabled-k8s=false`. Also pay special attention to `--devices` flag as it must match the interface name (eth0) from our netplan config above. Traffic entering/leaving this interface will be subject to translation.
 
 ```sh
-docker run --name cilium-lb -itd \
+docker run --name cilium-nat64 -itd \
+	-v /sys/fs/bpf:/sys/fs/bpf \
+	-v /lib/modules:/lib/modules \
+  --privileged=true \
+  --restart=always \
+  --network=host \
+"quay.io/cilium/cilium:v.17.7" cilium-agent \
+  --enable-ipv4=true \
+  --enable-ipv6=true \
+  --devices=eth0 \
+  --datapath-mode=lb-only \
+  --enable-k8s=false \
+  --bpf-lb-mode=snat \
+  --enable-nat46x64-gateway=true
+```
+
+{{< alert >}}
+There was a [breaking change](https://github.com/cilium/cilium/commit/feaf96b4a4804b320c06e498822b777e94ccc9c3) introduced in Cilium v1.18.0 which deprecates the use of `datapath-mode=lb-only` so I reached out to the good folks in #dev-lb on Cilium community slack and the man, the myth, the legend [Daniel Borkman](http://borkmann.ch) was very kind to point me in the right direction. To be honest I wasn't expecting to get my question directly answered by the guy who co-created eBPF amongst many other things in linux networking stack (such as netkit) so it was quite a humbling feeling to say the least 😅
+{{< /alert >}}
+
+![Alt Text](img/dev-lb-slack.png)
+
+To run **Cilium v1.18.0 or above as a standalone NAT46x64Gateway**, use the following command
+
+```sh
+docker run --name cilium-nat64 -itd \
 	-v /sys/fs/bpf:/sys/fs/bpf \
 	-v /lib/modules:/lib/modules \
 	--privileged=true \
 	--restart=always \
 	--network=host \
-	"quay.io/cilium/cilium:v.17.7" cilium-agent --enable-ipv4=true --enable-ipv6=true --devices=eth0 --datapath-mode=lb-only --enable-k8s=false --bpf-lb-mode=snat --enable-nat46x64-gateway=true
+"quay.io/cilium/cilium:stable" cilium-agent \
+	--enable-ipv4=true \
+	--enable-ipv6=true \
+	--devices=eth0 \
+	--enable-k8s=false \
+	--bpf-lb-nat46x64=true \
+	--enable-nat46x64-gateway=true  \
+	--enable-bpf-masquerade \
+	--enable-node-port=true \
+	--datapath-mode=netkit
 ```
 
-To check the status of our standalone cilium install with NAT64 enabled
+Let's check to see if cilium-agent successfully enabled NAT64 support or not
 
 ```sh
-root@nat64gw:~# docker exec -it cilium-lb cilium status --verbose | awk "/NAT46\/64/ {found=1} found"
+root@nat64gw:~# docker exec -it cilium-nat64 cilium-dbg status --verbose | awk "/NAT46\/64/ {found=1} found"
   NAT46/64 Support:
   - Services:         Enabled
   - Gateway:          Enabled
@@ -73,7 +107,6 @@ root@nat64gw:~# docker exec -it cilium-lb cilium status --verbose | awk "/NAT46\
   - LoadBalancer:   Enabled
   - externalIPs:    Enabled
   - HostPort:       Disabled
-
 ```
 
 ## Test
@@ -100,7 +133,7 @@ network:
         - to: default
           via: "2001:db8:dead:beef::1"
         - to: "64:ff9b::/96"
-          via: "2001:db8:abcd::2"
+          via: "2001:db8:46:64::2/64"
 ```
 
 Few noteworthy points:
@@ -150,4 +183,13 @@ root@testvm# curl -6 -v github.com
 * Connection #0 to host github.com left intact
 ```
 
-Voila!🍾 our Cilium based NAT46x64Gateway is up and running!
+Additionally, we can also validate this on our VM that is running the Cilium container.
+
+```sh
+root@nat64gw:~# docker exec -it cilium-lb cilium-dbg bpf nat list
+
+TCP IN [64:ff9b::8c52:7104]:80 -> [192.168.64.2]:33388 XLATE_DST [2001:db8:dead:beef::2]:33388 Created=155sec ago NeedsCT=0
+TCP OUT [2001:db8:dead:beef::2]:33388 -> [64:ff9b::8c52:7204]:80 XLATE_SRC [192.168.64.2]:33388 Created=155sec ago NeedsCT=0
+```
+
+Voila!🍾 this confirms our Cilium based NAT46x64Gateway is up and running!
