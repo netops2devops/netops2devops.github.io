@@ -88,7 +88,7 @@ docker run --name cilium-nat64 -itd \
 	--bpf-lb-nat46x64=true \
 	--enable-nat46x64-gateway=true  \
 	--enable-bpf-masquerade \
-	--enable-node-port=true \
+	--kube-proxy-replacement=true \
 	--datapath-mode=netkit
 ```
 
