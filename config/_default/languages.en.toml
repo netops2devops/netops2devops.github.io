@@ -28,6 +28,7 @@ links = [
   { github = "https://github.com/netops2devops" },
   { linkedin = "https://linkedin.com/in/netops2devops" },
   { bluesky = "https://bsky.app/profile/netops2devops.net" },
+  { hackernews = "https://news.ycombinator.com" },
   #     { codepen = "https://codepen.io/username" },
   #     { dev = "https://dev.to/username" },
   #     { discord = "https://discord.gg/invitecode" },

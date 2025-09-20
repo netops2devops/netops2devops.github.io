@@ -26,27 +26,17 @@
   weight = 50
 
 [[main]]
-  parent = "Series"
   name = "Cilium"
-  pageRef = "posts"
+  pageRef = "tags/cilium/"
+  parent = "Categories"
   weight = 20
 
-#[[main]]
-#  name = "example sub-menu 2"
-#  parent = "Parent"
-#  pageRef = "posts"
-#  weight = 20
+[[main]]
+  name = "Kubernetes"
+  pageRef = "tags/kubernetes/"
+  parent = "Categories"
+  weight = 20
 
-#[[subnavigation]]
-#  name = "Cilium"
-#  pageRef = "tags/cilium"
-#  weight = 10
-
-#[[subnavigation]]
-#  name = "My Awesome Category"
-#  pre = "github"
-#  pageRef = "categories/awesome"
-#  weight = 20
 
 #[[main]]
 #  name = "Categories"
