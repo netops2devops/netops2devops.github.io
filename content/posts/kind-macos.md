@@ -90,11 +90,11 @@ Thanks for using kind! 😊
 
 ### Cilium
 
-Next we need to install Cilium CNI with IPv6 enabled. As of writing I am using Cilium version `1.18.0`. Notice that I am disabling IPv4 since our cluster nodes and internal cluster services are configured to work with IPv6 only as discussed above.
+Next we need to install Cilium CNI with IPv6 enabled. As of writing I am using Cilium version `1.18.x`. Notice that I am disabling IPv4 since our cluster nodes and internal cluster services are configured to work with IPv6 only as discussed above.
 
 ```bash
 ❯ helm install cilium cilium/cilium -n kube-system \
-      --version 1.18.0 \
+      --version 1.18.2 \
       --set ipv6.enabled=true \
       --set ipv4.enabled=false \
       --set underlayProtocol=ipv6
@@ -105,7 +105,7 @@ Optionally, we can enable Hubble as well!
 ```bash
 ❯ helm upgrade -n kube-system \
     cilium cilium/cilium \
-  --reuse-values --version 1.18.0 \
+  --reuse-values --version 1.18.2 \
   --set hubble.relay.enabled=true \
   --set hubble.ui.enabled=true
 ```
