@@ -8,7 +8,7 @@ comments: false
 
 In this post I am sharing the relavent config bits that I needed to configure on my Mikrotik router to get an IPv6 block from my ISP using a process called as [prefix-delegation](https://blog.lacnic.net/en/introducing-dhcpv6-prefix-delegation/) The pre-requisite for prefix delegation is that (well, obviously) the ISP must support IPv6 on it's network and your router must be capable of making that request. Now the prefix size that an internet provider hands out varies from provider to provider, unfortunately. For e.g: Comcast is known to hand out a /60 where as ATT provdies a /56. My ISP which is a regional provider also hands out a /56
 
-Here's what my routerOS config looks like 
+Here's what my routerOS config looks like
 
 ```bash
 # Configure interface group

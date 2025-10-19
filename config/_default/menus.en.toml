@@ -16,11 +16,6 @@
   weight = 10
 
 [[main]]
-  name = "Categories"
-  pageRef = "categories"
-  weight = 20
-
-[[main]]
   name = "Tags"
   pageRef = "tags"
   weight = 30
@@ -29,19 +24,6 @@
   name = "About"
   pageRef = "about"
   weight = 50
-
-[[main]]
-  name = "Cilium"
-  pageRef = "tags/cilium/"
-  parent = "Categories"
-  weight = 20
-
-[[main]]
-  name = "Kubernetes"
-  pageRef = "tags/kubernetes/"
-  parent = "Categories"
-  weight = 20
-
 
 #[[main]]
 #  name = "Categories"

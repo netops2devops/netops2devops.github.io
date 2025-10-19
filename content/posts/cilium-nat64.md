@@ -50,8 +50,8 @@ To get Cilium up and running as a NAT46x64Gateway simply run the Cilium containe
 
 ```sh
 docker run --name cilium-nat64 -itd \
-	-v /sys/fs/bpf:/sys/fs/bpf \
-	-v /lib/modules:/lib/modules \
+ -v /sys/fs/bpf:/sys/fs/bpf \
+ -v /lib/modules:/lib/modules \
   --privileged=true \
   --restart=always \
   --network=host \
@@ -75,21 +75,21 @@ To run **Cilium v1.18.0 or above as a standalone NAT46x64Gateway**, use the foll
 
 ```sh
 docker run --name cilium-nat64 -itd \
-	-v /sys/fs/bpf:/sys/fs/bpf \
-	-v /lib/modules:/lib/modules \
-	--privileged=true \
-	--restart=always \
-	--network=host \
+ -v /sys/fs/bpf:/sys/fs/bpf \
+ -v /lib/modules:/lib/modules \
+ --privileged=true \
+ --restart=always \
+ --network=host \
 "quay.io/cilium/cilium:stable" cilium-agent \
-	--enable-ipv4=true \
-	--enable-ipv6=true \
-	--devices=eth0 \
-	--enable-k8s=false \
-	--bpf-lb-nat46x64=true \
-	--enable-nat46x64-gateway=true  \
-	--enable-bpf-masquerade \
-	--kube-proxy-replacement=true \
-	--datapath-mode=netkit
+ --enable-ipv4=true \
+ --enable-ipv6=true \
+ --devices=eth0 \
+ --enable-k8s=false \
+ --bpf-lb-nat46x64=true \
+ --enable-nat46x64-gateway=true  \
+ --enable-bpf-masquerade \
+ --kube-proxy-replacement=true \
+ --datapath-mode=netkit
 ```
 
 Let's check to see if cilium-agent successfully enabled NAT64 support or not
