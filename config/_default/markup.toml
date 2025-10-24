@@ -10,5 +10,5 @@ noClasses = false
 wrapperClass = 'highlight'
 
 [tableOfContents]
-startLevel = 1
-endLevel = 4
+  startLevel = 2
+  endLevel = 4

@@ -17,7 +17,7 @@ mainSections = ["posts", "projects"]
 
 disableImageOptimization = false
 disableTextInHeader = false
-backgroundImageWidth = 1200
+backgroundImageWidth = 1000
 defaultBackgroundImage = "img/rack.jpg" # used as default for background images 
 #defaultFeaturedImage = "" # used as default for featured images in all articles
 
@@ -65,7 +65,7 @@ smartTOCHideUnfocusedChildren = true
   seriesOpened = true
   showHeadingAnchors = true
   showPagination = true
-  invertPagination = false
+  invertPagination = true
   showReadingTime = true
   showTableOfContents = true
   showRelatedContent = true
@@ -87,7 +87,7 @@ smartTOCHideUnfocusedChildren = true
   showLikes = false
   showTableOfContents = false
   showCards = false
-  orderByWeight = false
+  orderByWeight = true
   groupByYear = true
   cardView = false
   cardViewScreenWidth = false
@@ -116,31 +116,3 @@ smartTOCHideUnfocusedChildren = true
   groupByYear = true
   cardView = false
   cardViewScreenWidth = false
-
-#[firebase]
-  # apiKey = "XXXXXX"
-  # authDomain = "XXXXXX"
-  # projectId = "XXXXXX"
-  # storageBucket = "XXXXXX"
-  # messagingSenderId = "XXXXXX"
-  # appId = "XXXXXX"
-  # measurementId = "XXXXXX"
-
-
-#[buymeacoffee]
-  # identifier = ""
-  # globalWidget = true
-  # globalWidgetMessage = "Hello"
-  # globalWidgetColor = "#FFDD00"
-  # globalWidgetPosition = "Right"
-
-#[verification]
-  # google = ""
-  # bing = ""
-  # pinterest = ""
-  # yandex = ""
-  # fediverse = ""
-
-#[rssnext]
-  # feedId = ""
-  # userId = ""

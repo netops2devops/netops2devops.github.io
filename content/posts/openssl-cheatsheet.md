@@ -6,7 +6,7 @@ author: "Kapil Agrawal"
 comments: false
 ---
 
-Every now and then I come across a situation where I need to work with PKI, X.509 certs etc. specially after transtioning into a more security focused role. I wanted to document some super handy OpenSSL one liners which I often rely on.
+Every now and then I come across a situation where I need to work with PKI, X.509 certs etc. specially after transitioning into a more security focused role. I wanted to document some super handy OpenSSL one liners which I often rely on.
 
 ### Generate (unencrypted) private key
 
