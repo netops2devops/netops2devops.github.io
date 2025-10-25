@@ -17,7 +17,7 @@ copyright = "Copy, _right?_ :thinking_face:"
 [params.author]
 name = "netops2devops"
 image = "img/logo.png"
-imageQuality = 100
+imageQuality = 90
 headline = "All things networking, systems, software and security"
 links = [
   { github = "https://github.com/netops2devops" },
