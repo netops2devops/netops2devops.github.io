@@ -16,11 +16,10 @@ copyright = "Copy, _right?_ :thinking_face:"
 
 [params.author]
 name = "netops2devops"
-image = "img/gopher.png"
-imageQuality = 96
+image = "img/logo.png"
+imageQuality = 100
 headline = "All things networking, systems, software and security"
 links = [
-  
   { github = "https://github.com/netops2devops" },
   { linkedin = "https://linkedin.com/in/netops2devops" },
   { bluesky = "https://bsky.app/profile/netops2devops.net" },

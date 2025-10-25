@@ -12,7 +12,7 @@ enableSearch = true
 enableCodeCopy = true
 replyByEmail = false
 
-mainSections = ["posts", "projects"]
+mainSections = ["posts", "series", "projects"]
 # robots = ""
 
 disableImageOptimization = false
@@ -23,7 +23,7 @@ defaultBackgroundImage = "img/rack.jpg" # used as default for background images
 
 highlightCurrentMenuArea = true
 smartTOC = true
-smartTOCHideUnfocusedChildren = true
+smartTOCHideUnfocusedChildren = false
 
 [header]
   layout = "fixed-fill" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur

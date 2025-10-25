@@ -327,7 +327,12 @@ In this part 2 of the series we successfully deployed
 Now here's some food for thought -
 
 1. `kubectl get po -A -o wide` shows pod IPv6 addresses using a mix of GUA and ULA. Why is that?
-2. Where are those ULA addresses for the pods coming from? What if you wanted to route pod addresses and use GUA ipv6 the way it's meant to be used? Are there any security issues to be aware of when routing the pod addresses?
-3. How does a packet ingress and egress out of the cluster?
+2. Where are those ULA addresses for the pods coming from? What if we wanted to route pod addresses and use GUA ipv6 the way it's meant to be used? Are there any security issues to be aware of when routing the pod addresses?
+3. If pods have ephemeral IPv6 addresses:
 
-What I was referring to in Part 1 as *wizardry and arcane magic in the realm of Kubernetes & IPv6 networking* is these kinds of questions (and more) that should be taken into careful consideration before deploying in production which I will cover in part 3.
+    - How can we obtain a fixed predictable ingress/egress IPv6 address for an application?
+    - How to expose the application to the outside world?
+
+4. How does a packet ingress and egress out of the cluster? What do those traffic patterns look like?
+
+What I was referring to in Part 1 as *wizardry and arcane magic in the realm of Kubernetes & IPv6 networking* is these kinds of questions (and more) that should be taken into careful consideration before a production deployment which I will cover in part 3.
