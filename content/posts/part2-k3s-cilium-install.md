@@ -307,8 +307,11 @@ In this part 2 of the series we successfully deployed
 
 But before I wrap up this post let's chew on this for a bit. Something to think about
 
-1. Where did those pods get their IPv6 addresses from?
-2. Running `kubectl get po -A -o wide` shows pod IPv6 addresses using a mix of GUA and ULA. Why is that?
-3. Where is that ULA addressing for the pods coming from? Is it possible to change those a GUA address? What are the implications of doing so?
-4. Even if we didn't enable masquerading in our helm values, why is the pod'a address being masqueraded to the node's address when it tries to `curl ifconfig.io` from netshoot pod?
-5. How do I expose my application outside the cluster with a routable IPv6 address?
+1. `kubectl get po -A -o wide` shows pod IPv6 addresses using a mix of GUA and ULA. Why is that?
+2. Where is that ULA addressing for the pods coming from? Is it possible to change those a GUA address? What are the security implications of doing so?
+3. Why is the pod's actual ipv6 address being masqueraded (to the node address) when it tries to `curl ifconfig.io`?
+4. Isn't the whole point of using IPv6 to use global unicast addresses (GUA) so that we don't have deal with SNAT/masquerading?
+5. How can I make my pod addresses routable and use IPv6 the way lord intended it to be used?
+6. How do I securely expose my application outside the cluster over IPv6 without exposing my entire cluster internal network?
+
+What I was referring to in Part 1 as *wizardry and arcane magic in the realm of Kubernetes & IPv6 networking* is these kinds of questions (and more) that should be taken into account before deploying in production which I will cover in part 3.
