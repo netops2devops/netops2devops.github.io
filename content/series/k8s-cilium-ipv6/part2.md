@@ -8,7 +8,7 @@ series: ["Kubernetes in IPv6 only networks"]
 series_order: 2
 ---
 
-Now that our underlying network infrastructure requirements are squared (as described in Part 1) we are ready to install [k3s](https://docs.k3s.io) as our Kubernetes distribution. First we need to prepare our desired k3s config file and override a few default settings. From my experience, *this is where most users get tripped up early on* when setting up Kubernetes on an IPv6 only network. They assume the default configurations will work out of the box with IPv6, but that’s far from true. As mentioned in Part 1 of this series, Kubernetes enables us to build highly composable system through various add-ons (or plugins). That’s why it’s essential for every component that we add to support IPv6. Each add-on comes with its own set of default values which we likely need to override to *make it work* with IPv6. So hang tight and follow along.
+Now that our underlying network infrastructure requirements are squared (as described in Part 1) we are ready to install [k3s](https://docs.k3s.io) as our Kubernetes distribution. First we need to prepare our desired k3s config file and override a few default settings. From my experience, *this is where most users get tripped up early on*. They assume the default configurations will work out of the box with IPv6, but that’s far from true. As mentioned in Part 1 of this series, Kubernetes enables us to build highly composable system through various add-ons (or plugins). That’s why it’s essential for every component that we add to support IPv6. Each add-on comes with its own set of default values which we likely need to override to *make it work* in our IPv6 only network. So hang tight and follow along.
 
 ![Kubernetes in IPv6 only network using k3s and cilium](img/k3s-ipv6-cilium.png)
 
@@ -92,12 +92,17 @@ Let's copy the `k3s.yaml` file over to our local workstation and update the serv
 
 ### Install Cilium
 
-For any CNI a fundamental requirement is to provide pod to pod connectivity within the cluster. This can be done in two ways using Cilium.
+The most fundamental requirement for any CNI is to provide pod to pod connectivity within the cluster. Cilium does this in two ways:
 
 1. `Native-Routing` : The native packet forwarding mode leverages the routing capabilities of the network Cilium runs on instead of performing encapsulation.
+
 2. `Encapsulation` : Cilium defaults to using VxLAN based tunnel mechanism to form a mesh of tunnels between all cluster nodes.
 
-Each of these approaches have their own pros and cons some of those are documented in [the official cilium docs](https://docs.cilium.io/en/stable/network/concepts/routing/#configuration) Unless `routing-mode: native` is set, Cilium will default to using tunnel mode. A strong reason for using default tunnel mode is if you want simplicity and low operational overhead to familiarize ourselves with what deploying Kubernetes in IPv6 only environment looks like. It abstracts away most of the complexity that is Kubernetes networking :-) Support for using tunnel mode in IPv6 only networks has been newly introduced in Cilium 1.18.0 which really makes setting up Kubernetes networking in IPv6 only environment a walk in the park! But there are some really strong reasons where native-routing makes more sense which I will cover in a subsequent post in this series.
+Each of these approaches have their own pros and cons, and some of those are documented in [the official cilium docs](https://docs.cilium.io/en/stable/network/concepts/routing/#configuration) Unless `routing-mode: native` is explicitly set, Cilium defaults to `routing-mode: tunnel`. A good reason for using the tunnel mode is when simplicity, low operational overhead is desired as it abstracts away most of the complexity that is Kubernetes networking :-) Given this blog post is about building the simplest possible IPv6 only k3s cluster using Cilium, we will be leveraging the tunnel routing mode.
+
+> When in doubt, use `helm show values cilium/cilium` to see all the default values in Cilium's helm chart
+
+Cilium's support for using tunnel mode in IPv6 only networks has been newly introduced in v1.18.0 which really makes setting up Kubernetes in IPv6 only environment feel like a walk in the park! But there are some really strong reasons where native-routing makes more sense which I will cover in a subsequent post in this series.
 
 In its current state our k3s cluster is pretty much useless. We have only bootstrapped k3s on 1 control plane node. Before we can even join a worker node we or deploy a real application to our cluster need to install Cilium CNI. So let's create a file named `values.yaml` with the following
 
@@ -264,6 +269,20 @@ hello-world   ClusterIP   fd00::58ed   <none>        80/TCP    3s
 check pod to pod connectivity and pod to ClusterIP (east-west)
 
 ```
+netshoot:~# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host proto kernel_lo
+       valid_lft forever preferred_lft forever
+8: eth0@if9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether d6:88:0d:ae:40:4b brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet6 fd00::12e/128 scope global nodad
+       valid_lft forever preferred_lft forever
+    inet6 fe80::d488:dff:feae:404b/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+
 # ping one of the hello-world pods
 netshoot:~# ping fd00::286
 PING fd00::286 (fd00::286) 56 data bytes
@@ -302,16 +321,13 @@ The above tests confirm that our IPv6 only k3s cluster is operational from a net
 
 In this part 2 of the series we successfully deployed
 
-1. k3s cluster in an IPv6 only network.
-2. hello-world app and verified connectivity in and out of the cluster
+1. k3s cluster in our IPv6 only network.
+2. A simple hello-world app and verified network connectivity in and out of the cluster
 
-But before I wrap up this post let's chew on this for a bit. Something to think about
+Now here's some food for thought -
 
 1. `kubectl get po -A -o wide` shows pod IPv6 addresses using a mix of GUA and ULA. Why is that?
-2. Where is that ULA addressing for the pods coming from? Is it possible to change those a GUA address? What are the security implications of doing so?
-3. Why is the pod's actual ipv6 address being masqueraded (to the node address) when it tries to `curl ifconfig.io`?
-4. Isn't the whole point of using IPv6 to use global unicast addresses (GUA) so that we don't have deal with SNAT/masquerading?
-5. How can I make my pod addresses routable and use IPv6 the way lord intended it to be used?
-6. How do I securely expose my application outside the cluster over IPv6 without exposing my entire cluster internal network?
+2. Where are those ULA addresses for the pods coming from? What if you wanted to route pod addresses and use GUA ipv6 the way it's meant to be used? Are there any security issues to be aware of when routing the pod addresses?
+3. How does a packet ingress and egress out of the cluster?
 
-What I was referring to in Part 1 as *wizardry and arcane magic in the realm of Kubernetes & IPv6 networking* is these kinds of questions (and more) that should be taken into account before deploying in production which I will cover in part 3.
+What I was referring to in Part 1 as *wizardry and arcane magic in the realm of Kubernetes & IPv6 networking* is these kinds of questions (and more) that should be taken into careful consideration before deploying in production which I will cover in part 3.
