@@ -29,16 +29,16 @@ The most basic lab scenario to create a Kubernetes cluster contains 1 control pl
 
 Let's assume `2001:db8::/48` as the parent block which we will break down into smaller chunks of /56 prefixes. I have found this online [subnetting calculator](https://www.cidr.eu/en/calculator) to be of great help for address planning. A `/48` gives us `2^8 = 256 x /56` prefixes and each `/56` gives us `256 x /64` subnets. We want to stick to best practices outlined in RFC 7421, RFC 8504 hence we are going to treat /64 as the network boundary. We will be using different non overlapping /64 subnets for addressing our nodes, pods, services, gateway/ingress addresses etc. though our most immediate need is an address block for our cluster nodes. Let's allocate the first /56 prefix i.e `2001:db8::/56` to address all our cluster nodes.
 
-While there is no such hard rule, it is a good practice to keep control plane nodes and worker nodes contained in their own respective Layer3 boundaries which provides some degree of network isolation and logical separation which helps keep the overall network design clean.
+While there is no such hard rule, it is a good practice to keep control plane nodes and worker nodes contained in their own respective Layer3 boundaries which provides some degree of network isolation as well as logical separation to keep the overall design clean.
+In part 3 of this series I will cover more about address planning for various Kubernetes components (pods, services, ingress, egress etc.), but the following is the bare minimum need to get underlying infrastructure setup
 
 ```sh
-2001:db8::/56           # node addressing pool
-|
-|-- 2001:db8::/64       # control nodes
-|-- 2001:db8:0:1::/64   # worker nodes 
-|-- 2001:db8:0:2::/64   # reserved
-
-..snipped..
+2001:db8::/48               # parent block
+  |-- 2001:db8::/56         # node address pool
+    \-- 2001:db8::/64       # control nodes
+    \-- 2001:db8:0:1::/64   # worker nodes 
+    \-- 2001:db8:0:2::/64   # reserved
+    ...
 ```
 
 ### DNS64 and NAT64
