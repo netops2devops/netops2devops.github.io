@@ -127,16 +127,16 @@ Cilium has a robust BGP control plane implementation which fits really well for 
 
 #### Pod to World over IPv6 (egress)
 
-For IPv6-only networks where PodCIDR is routed using Cilium's native-routing, pods can obtain a global unicast address (GUA) by using [multi-pool](https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/) IPAM. While other IPAM modes in Cilium (such as cluster scope, Kubernetes host scope) can also be configured to hand out GUA addresses, they are [not as flexible](https://docs.cilium.io/en/stable/network/concepts/ipam/#address-management) as multi-pool IPAM. While Cilium's documentation (as of 1.18.x) indicates this IPAM mode is still considered "Beta", 1.18.0 release has flushed out most of the bugs and limitations that existed for it to work as an IPAM mode for IPv6 clusters. Using GUA addresses for pods eliminates the need for a dedicated egress gateway and keeps the egress traffic path clean which in lines with our design philosophy mentioned above.
+For IPv6-only networks where PodCIDR is routed using Cilium's native-routing, pods can obtain a global unicast address (GUA) by using [multi-pool](https://docs.cilium.io/en/stable/network/concepts/ipam/multi-pool/) IPAM. While other IPAM modes in Cilium (such as cluster scope, Kubernetes host scope) can also be configured to hand out GUA addresses, they are [not as flexible](https://docs.cilium.io/en/stable/network/concepts/ipam/#address-management) as multi-pool IPAM. Using GUA addresses for pods eliminates the need for a dedicated egress gateway and keeps the egress traffic path clean which in lines with our design philosophy mentioned above. While Cilium's documentation (as of 1.18) indicates multi-pool is still in "Beta", 1.18.x release already flushed out most of the bugs and limitations that existed for multi-pool IPAM to work with IPv6. As of writing, it has reached *near stable* state and is slated to become generally available (GA) in 1.19 release.
 
-## How Cilium's IPAM works
+## How Pods Get IPv6 Addresses
 
 While the internal details of Cilium’s IPAM implementation are beyond the scope of this series (that could be a separate series in itself 😄), here’s a *general high-level overview* of how the multi-pool IPAM works:
 
 1. You (cluster admin) install Cilium with `ipam.mode: multi-pool`, defining one or more IPv6 PodIPPools for pod addressing.
 2. The Cilium Operator calculates, how many nodes the pool can support based on the configured `maskSize`.
-3. It then allocates a prefix of that maskSize from the PodIPPool to each node and delegates pod address management to the cilium-agent locally.
-4. When a new pod is scheduled on a node, the cilium-agent assigns it an available IPv6 address from the node’s allocated subnet.
+3. It then allocates a prefix of that maskSize from the PodIPPool to each node it can accommodate and delegates pod address management to the cilium-agent locally.
+4. When a new pod is scheduled on a node, the cilium-agent assigns it an available IPv6 address from one of the node’s allocated subnets.
 
 ## Conclusion
 
