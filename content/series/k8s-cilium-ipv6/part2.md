@@ -2,7 +2,7 @@
 title: Simplest IPv6 only k3s cluster using Cilium
 date: 2025-10-24
 tags: ["IPv6", "Cilium", "Kubernetes"]
-authors: ["Kapil Agrawal"]
+author: "Kapil Agrawal"
 comments: false
 series: ["Kubernetes in IPv6 only networks"]
 series_order: 2
@@ -325,7 +325,7 @@ In this part 2 of the series we successfully deployed
 1. k3s cluster in our IPv6 only network.
 2. A simple hello-world app and verified network connectivity in and out of the cluster
 
-![easy-ipv6-k8s-meme](img/aa628u.jpg)
+![easy-ipv6-k8s-meme](img/cilium-v6easy-meme.jpg)
 
 Now here's some food for thought -
 

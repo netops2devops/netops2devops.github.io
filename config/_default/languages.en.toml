@@ -23,5 +23,5 @@ links = [
   { github = "https://github.com/netops2devops" },
   { linkedin = "https://linkedin.com/in/netops2devops" },
   { bluesky = "https://bsky.app/profile/netops2devops.net" },
-  #{ codeberg = "https://codeberg.org/netops2devops"}
+  { codeberg = "https://codeberg.org/netops2devops"}
 ]
