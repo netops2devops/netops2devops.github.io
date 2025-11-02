@@ -30,6 +30,7 @@ The most basic lab scenario to create a Kubernetes cluster contains 1 control pl
 Let's assume `2001:db8::/48` as the parent block which we will break down into smaller chunks of /56 prefixes. I have found this online [subnetting calculator](https://www.cidr.eu/en/calculator) to be of great help for address planning. A `/48` gives us `2^8 = 256 x /56` prefixes and each `/56` gives us `256 x /64` subnets. We want to stick to best practices outlined in RFC 7421, RFC 8504 hence we are going to treat /64 as the network boundary. We will be using different non overlapping /64 subnets for addressing our nodes, pods, services, gateway/ingress addresses etc. though our most immediate need is an address block for our cluster nodes. Let's allocate the first /56 prefix i.e `2001:db8::/56` to address all our cluster nodes.
 
 While there is no such hard rule, it is a good practice to keep control plane nodes and worker nodes contained in their own respective Layer3 boundaries which provides some degree of network isolation as well as logical separation to keep the overall design clean.
+
 In part 3 of this series I will cover more about address planning for various Kubernetes components (pods, services, ingress, egress etc.), but the following is the bare minimum need to get underlying infrastructure setup
 
 ```sh
@@ -145,5 +146,14 @@ PING 2001:db8:0:1::a (2001:db8:0:1::a) 56 data bytes
 ```
 
 ## Conclusion
+
+While setting up DNS64/NAT64 may have taken some initial effort, it has freed us from the constraints of the legacy IPv4 protocol without sacrificing compatibility with the parts of the internet that still rely on it. Think of it as an investment that will continue to pay off over time, especially when you realize you no longer need to:
+
+1. Maintain and operate two parallel networks in a dual-stack configuration.
+2. Worry about IPv4 address exhaustion ever again.
+
+Even better, your internal infrastructure can now be designed around IPv6-only networking. For external accessibility, you can simply dual-stack your ingress or external-facing load balancer to handle translation between a dual-stack virtual IP (VIP) and your IPv6-only backends thus giving you the best of both worlds.
+
+![bernie-wants-you-to-run-ipv6only](img/bernie-ipv6only-meme.jpg)
 
 Now that the required underlying IPv6 infrastructure is ready to go, in the next part of this series we will deploy Kubernetes using k3s and cilium in this IPv6 only environment.

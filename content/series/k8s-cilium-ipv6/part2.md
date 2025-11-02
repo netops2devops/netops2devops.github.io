@@ -43,7 +43,8 @@ disable-kube-proxy: true
 # this prefix does not need to be routed
 # maximum size supported by k3s is a /108 due to a bitmap limitation
 service-cidr: "fd00::/108"
-# k3s out of the box ships with whole bunch of addons which we don't need since we will be using Cilium
+# k3s ships with whole bunch of networking related add-ons out of the box
+# which we don't need because we will be using Cilium for our use case
 # consider enabling metrics-server if you want pretty some grafana dashboards for monitoring
 disable:
   - traefik
@@ -323,6 +324,8 @@ In this part 2 of the series we successfully deployed
 
 1. k3s cluster in our IPv6 only network.
 2. A simple hello-world app and verified network connectivity in and out of the cluster
+
+![easy-ipv6-k8s-meme](img/aa628u.jpg)
 
 Now here's some food for thought -
 
