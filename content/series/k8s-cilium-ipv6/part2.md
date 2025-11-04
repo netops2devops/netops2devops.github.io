@@ -65,7 +65,7 @@ curl -sfL https://get.k3s.io | sh -
 Before proceeding verify the k3s systemd service is up and running `systemctl status k3s`.
 
 ```
-root@control1:/home/kagraw# systemctl status k3s
+root@control1:# systemctl status k3s
 ● k3s.service - Lightweight Kubernetes
      Loaded: loaded (/etc/systemd/system/k3s.service; enabled; preset: enabled)
      Active: active (running) since Sat 2025-10-25 00:05:07 UTC; 50min ago
@@ -204,7 +204,7 @@ worker2    Ready    worker                      85m   v1.33.5+k3s1
 cilium-agent and envoy have fully converged
 
 ```
-homelab ❯ cilium status
+❯ cilium status
     /¯¯\
  /¯¯\__/¯¯\    Cilium:             OK
  \__/¯¯\__/    Operator:           OK
