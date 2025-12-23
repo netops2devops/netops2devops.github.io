@@ -21,11 +21,6 @@
   weight = 20
 
 [[main]]
-  name = "IPv6 Kubernetes with Cilium"
-  pageRef = "/series/kubernetes-in-ipv6-only-networks"
-  parent= "Series"
-
-[[main]]
   name = "Tags"
   pageRef = "tags"
   weight = 30

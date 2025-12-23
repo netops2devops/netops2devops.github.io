@@ -23,7 +23,7 @@ The most basic lab scenario to create a Kubernetes cluster contains 1 control pl
 - DNS64 and NAT64
 - BGP Router (FRR, VyOS either work just fine)
 
-![IPv6 only lab network topology](img/k8s-ipv6-infra.png)
+![IPv6 only lab network topology](k8s-ipv6-infra.png)
 
 ### IPv6 Address Planning
 
@@ -154,6 +154,6 @@ While setting up DNS64/NAT64 may have taken some initial effort, it has freed us
 
 Even better, your internal infrastructure can now be designed around IPv6-only networking. For external accessibility, you can simply dual-stack your ingress or external-facing load balancer to handle translation between a dual-stack virtual IP (VIP) and your IPv6-only backends thus giving you the best of both worlds.
 
-![bernie-wants-you-to-run-ipv6only](img/bernie-ipv6only-meme.jpg)
+![bernie-wants-you-to-run-ipv6only](bernie-ipv6only-meme.jpg)
 
 Now that the required underlying IPv6 infrastructure is ready to go, in the next part of this series we will deploy Kubernetes using k3s and cilium in this IPv6 only environment.

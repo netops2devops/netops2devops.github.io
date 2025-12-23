@@ -104,13 +104,13 @@ So if we try to allocate these subnets in our original address block `2001:db8::
 
 This is the *intra-cluster* traffic between pods, services, and nodes rather than traffic entering or leaving the cluster. These patterns can take several forms. The most common is `service-to-service` traffic, where two microservices communicate over the cluster network using DNS-based service discovery and CNI managed routing. The term "service-to-service traffic" is yet another abstraction which network engineers are already familiar with. Say if Pod A (part of microservice A) wants to talk to Service B, it first queries CoreDNS (usually running as a set of pods inside the cluster) to resolve `service-b.namespace.svc.cluster.local` into a ClusterIP. That DNS lookup itself is Pod-to-DNS traffic. Once the ClusterIP is resolved, the connection from Pod A to Service B is actually routed to one of the endpoints behind Service B’s (Pod B). Pod to Pod traffic can be direct (within the same node) or routed across nodes via the CNI overlay or native routing. Another common pattern is control-plane to node traffic, such as the API server coordinating with kubelets or managing workloads. Together, these patterns define high-volume flows that make up east-west traffic in a Kubernetes cluster. Some of these flows are depicted in the figure below.
 
-![east-west-traffic-patterns](img/east-west-traffic.png)
+![east-west-traffic-patterns](east-west-traffic.png)
 
 ### North-South
 
 north-south traffic refers to traffic moving into or out of the cluster, as opposed to east-west traffic that stays internal. This includes several key patterns. The most common is `world-to-ingress`, where external clients or users access applications running in the cluster through an Ingress or Gateway API endpoint, often fronted by a load balancer that terminates TLS and routes requests to the appropriate backend services. Another form is `pod-to-world`, where workloads inside the cluster reach out to external applications, infrastructure, typically subject to egress policies or NAT64 gateway translation. A third pattern occurs during image pulls, where the Container Runtime Interface (CRI) on each node communicates with external container registries to fetch images needed for pods. Together, these north-south flows define how the cluster interfaces with the outside world.
 
-![north-south-traffic-patterns](img/north-south-traffic.png)
+![north-south-traffic-patterns](north-south-traffic.png)
 
 Regardless of whether you choose to run Cilium in native-routing or tunnel mode, you are going to need a Gateway API Operator (aka Ingress controller) installed in your cluster to solve the two most common problems in Kubernetes networking for north-south traffic, i.e How to -
 

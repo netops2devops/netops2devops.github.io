@@ -10,7 +10,7 @@ series_order: 2
 
 Now that our underlying network infrastructure requirements are squared (as described in Part 1) we are ready to install [k3s](https://docs.k3s.io) as our Kubernetes distribution. First we need to prepare our desired k3s config file and override a few default settings. From my experience, *this is where most users get tripped up early on*. They assume the default configurations will work out of the box with IPv6, but that’s far from true. As mentioned in Part 1 of this series, Kubernetes enables us to build highly composable system through various add-ons (or plugins). That’s why it’s essential for every component that we add to support IPv6. Each add-on comes with its own set of default values which we likely need to override to *make it work* in our IPv6 only network. So hang tight and follow along.
 
-![Kubernetes in IPv6 only network using k3s and cilium](img/k3s-ipv6-cilium.png)
+![Kubernetes in IPv6 only network using k3s and cilium](k3s-ipv6-cilium.png)
 
 ## Bootstrap k3s Controller
 
@@ -23,7 +23,7 @@ mkdir -p /etc/rancher/k3s
 touch /etc/rancher/k3s/config.yaml
 ```
 
-2. Add the following to `config.yaml` file. You may need to update the address bits to match your lab environment.
+1. Add the following to `config.yaml` file. You may need to update the address bits to match your lab environment.
 
 ```yaml
 # /etc/rancher/k3s/config.yaml
@@ -160,7 +160,7 @@ mkdir -p /etc/rancher/k3s
 touch /etc/rancher/k3s/config.yaml
 ```
 
-2. Add the following lines to our `config.yaml`
+1. Add the following lines to our `config.yaml`
 
 ```yaml
 ---
@@ -168,7 +168,7 @@ token-file: /tmp/node-token
 server: https://[2001:db8::1]:6443
 ```
 
-3. Finally, install k3s on worker1
+1. Finally, install k3s on worker1
 
 ```sh
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent" sh -s -
@@ -325,7 +325,7 @@ In this part 2 of the series we successfully deployed
 1. k3s cluster in our IPv6 only network.
 2. A simple hello-world app and verified network connectivity in and out of the cluster
 
-![easy-ipv6-k8s-meme](img/cilium-v6easy-meme.jpg)
+![easy-ipv6-k8s-meme](cilium-v6easy-meme.jpg)
 
 Now here's some food for thought -
 
