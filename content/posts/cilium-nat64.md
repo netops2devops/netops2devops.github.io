@@ -65,9 +65,8 @@ docker run --name cilium-nat64 -itd \
   --enable-nat46x64-gateway=true
 ```
 
-{{< alert >}}
-There was a [breaking change](https://github.com/cilium/cilium/commit/feaf96b4a4804b320c06e498822b777e94ccc9c3) introduced in Cilium v1.18.0 which deprecates the use of `datapath-mode=lb-only` so I reached out to the good folks in #dev-lb on Cilium community slack and the man, the myth, the legend [Daniel Borkman](http://borkmann.ch) was very kind to point me in the right direction. To be honest I wasn't expecting to get my question directly answered by the guy who co-created eBPF amongst many other things in linux networking stack (such as netkit) so it was quite a humbling feeling to say the least 😅
-{{< /alert >}}
+> [!NOTE]
+>There was a [breaking change](https://github.com/cilium/cilium/commit/feaf96b4a4804b320c06e498822b777e94ccc9c3) introduced in Cilium v1.18.0 which deprecates the use of `datapath-mode=lb-only` so I reached out to the good folks in #dev-lb on Cilium community slack and the man, the myth, the legend [Daniel Borkman](http://borkmann.ch) was very kind to point me in the right direction. To be honest I wasn't expecting to get my question directly answered by the guy who co-created eBPF amongst many other things in linux networking stack (such as netkit) so it was quite a humbling feeling to say the least 😅
 
 ![Alt Text](img/dev-lb-slack.png)
 
@@ -160,9 +159,8 @@ github.com has IPv6 address 64:ff9b::8c52:7104
 
 - Static route to `64::ff9b/96` which is a special prefix that is used by IPv4/IPv6 translators as defined in [RFC6502](https://datatracker.ietf.org/doc/html/rfc6052). When the DNS64 server responds with the translated IPv6 address, our ipv6 only test host looks up it's routing table and forwards the packet directly to our NAT46x64Gateway i.e `2001:db8:abcd::2`
 
-{{< alert >}}
-**Note!** Using a static route is not a hard requirement. The bottom line is that your router needs to know where to forward IPv6 packets going to `64:ff9b::/96` i.e what the next hop is.
-{{< /alert >}}
+> [!Note]
+> Using a static route is not a hard requirement. The bottom line is that your router needs to know where to forward IPv6 packets going to `64:ff9b::/96` i.e what the next hop is.
 
 Our moment of truth has finally arrived ⏳
 
