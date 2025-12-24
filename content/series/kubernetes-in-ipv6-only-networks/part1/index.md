@@ -48,7 +48,7 @@ If you don't have a NAT64 gateway configured in your IPv6 only network, you are 
 
 Both Cloudflare and Google offer free DNS64 service. Either of those can be used.
 
-```
+```sh
 ~
 ❯ host dns64.cloudflare-dns.com
 dns64.cloudflare-dns.com has IPv6 address 2606:4700:4700::64
