@@ -1,6 +1,6 @@
 ---
 title: IPv6 infrastructure before deploying Kubernetes
-summary: The not so obvious infrastructure requirements to consider before deploying Kubernetes in IPv6 Only networks
+description: "The not so obvious infrastructure requirements to consider before deploying Kubernetes in IPv6 Only network"
 date: 2025-10-22
 lastmod: 2025-10-22
 tags: ["IPv6", "Cilium", "Kubernetes"]
