@@ -1,6 +1,7 @@
 ---
 title: Simplest IPv6 only k3s cluster using Cilium
 date: 2025-10-24
+lastmod: 2025-10-24
 tags: ["IPv6", "Cilium", "Kubernetes"]
 author: "Kapil Agrawal"
 comments: false

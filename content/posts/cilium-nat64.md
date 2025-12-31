@@ -1,6 +1,7 @@
 ---
 title: Using Cilium as a standalone NAT46x64Gateway
 date: 2025-05-01
+lastmod: 2025-05-01
 tags: ["IPv6", "Cilium", "eBPF"]
 authors: ["Kapil Agrawal"]
 comments: false

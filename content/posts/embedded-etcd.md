@@ -1,6 +1,7 @@
 ---
 title: Accessing embedded etcd in K3s
 date: 2025-08-17
+lastmod: 2025-12-30
 tags: ["kubernetes"]
 author: "Kapil Agrawal"
 comments: false

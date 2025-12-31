@@ -1,6 +1,7 @@
 ---
 title: IPv6 infrastructure before deploying Kubernetes
 date: 2025-10-22
+lastmod: 2025-10-22
 tags: ["IPv6", "Cilium", "Kubernetes"]
 authors: ["Kapil Agrawal"]
 comments: false
