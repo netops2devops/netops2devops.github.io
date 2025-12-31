@@ -18,8 +18,9 @@ mainSections = ["posts", "series", "projects"]
 disableImageOptimization = false
 disableTextInHeader = false
 backgroundImageWidth = 1000
-defaultBackgroundImage = "img/rack.jpg" # used as default for background images 
+defaultBackgroundImage = "img/rack.jpg" # used as default for background images
 #defaultFeaturedImage = "" # used as default for featured images in all articles
+defaultSocialImage = "img/logo.png" # used as fallback image for social media previews
 
 highlightCurrentMenuArea = true
 smartTOC = true
