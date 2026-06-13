@@ -1,6 +1,9 @@
 disabled = false
-languageCode = "en"
-languageName = "English"
+
+[languages.en]
+locale = "en"
+label = "English"
+
 weight = 1
 title = "Home"
 
