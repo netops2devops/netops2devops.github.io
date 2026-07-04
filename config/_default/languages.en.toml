@@ -1,11 +1,8 @@
 disabled = false
-
-[languages.en]
 locale = "en"
 label = "English"
-
 weight = 1
-title = "Home"
+title = "netops2devops"
 
 [params]
 displayName = "EN"

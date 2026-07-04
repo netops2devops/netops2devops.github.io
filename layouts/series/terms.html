@@ -1,0 +1,44 @@
+{{ define "main" }}
+  {{ .Scratch.Set "scope" "terms" }}
+  {{ $showHero := .Params.showHero | default site.Params.taxonomy.showHero | default false }}
+  {{ if $showHero }}
+    {{ $heroStyle := print "hero/" site.Params.taxonomy.heroStyle ".html" }}
+    {{ if templates.Exists ( printf "partials/%s" $heroStyle ) }}
+      {{ partial $heroStyle . }}
+    {{ else }}
+      {{ partial "hero/basic.html" . }}
+    {{ end }}
+  {{- end -}}
+
+  <header class="mt-5">
+    {{ if .Params.showBreadcrumbs | default (site.Params.taxonomy.showBreadcrumbs | default false) }}
+      {{ partial "breadcrumbs.html" . }}
+    {{ end }}
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+    <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      {{ partial "article-meta/taxonomy.html" (dict "context" . "scope" "single") }}
+    </div>
+  </header>
+
+  {{ if .Content }}
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      <div class="min-w-0 min-h-0 max-w-prose">
+        {{ .Content }}
+      </div>
+    </section>
+  {{ end }}
+
+  <ol class="mt-6 max-w-prose space-y-3 list-decimal list-outside ml-6">
+    {{ range .Data.Terms.Alphabetical }}
+      <li class="text-xl font-medium">
+        <a
+          class="decoration-primary-500 hover:underline hover:underline-offset-2"
+          href="{{ .Page.RelPermalink }}"
+        >{{ .Page.Title }}</a>
+        {{ if site.Params.taxonomy.showTermCount | default true }}
+          <span class="text-base text-neutral-400 ml-1">({{ .Count }})</span>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ol>
+{{ end }}
