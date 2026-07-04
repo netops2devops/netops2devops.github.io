@@ -1,8 +1,19 @@
 @font-face {
-  font-family: RedHatText;
-  src: url('/fonts/RedHatText-Regular.ttf');
+    font-family: MozillaText;
+    src: url('/fonts/MozillaText-Light.ttf');
 }
 
 html {
-  font-family: RedHatText;
+    font-family: MozillaText;
+}
+
+@font-face {
+    font-family: JetBrainsMono;
+    src: url('/fonts/JetBrainsMono-Light.ttf');
+}
+
+pre,
+pre code,
+code {
+    font-family: 'JetBrainsMono', monospace;
 }
