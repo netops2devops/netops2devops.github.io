@@ -2,7 +2,7 @@ disabled = false
 locale = "en"
 label = "English"
 weight = 1
-title = "<b>netops2devops</b>"
+title = "netops2devops"
 
 [params]
 displayName = "EN"
