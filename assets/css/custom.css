@@ -1,11 +1,11 @@
-@font-face {
-    font-family: MozillaText;
-    src: url('/fonts/MozillaText-Light.ttf');
+/*@font-face {
+    font-family: Inter;
+    src: url('/fonts/Inter_18pt-Regular.ttf');
 }
 
 html {
-    font-family: MozillaText;
-}
+    font-family: Inter;
+}*/
 
 @font-face {
     font-family: JetBrainsMono;
