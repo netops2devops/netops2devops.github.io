@@ -1,15 +1,15 @@
-/*@font-face {
-    font-family: Inter;
-    src: url('/fonts/Inter_18pt-Regular.ttf');
+@font-face {
+    font-family: Menlo;
+    src: url('/fonts/Menlo.ttc');
 }
 
 html {
-    font-family: Inter;
-}*/
+    font-family: Menlo;
+}
 
 @font-face {
     font-family: JetBrainsMono;
-    src: url('/fonts/JetBrainsMono-Light.ttf');
+    src: url('/fonts/JetBrainsMono-Regular.ttf');
 }
 
 pre,
