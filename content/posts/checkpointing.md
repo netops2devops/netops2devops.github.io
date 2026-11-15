@@ -2,7 +2,6 @@
 title: Container Checkpointing in K3s for Forensics
 date: 2025-09-14
 tags: ["security", "kubernetes"]
-authors: ["Kapil Agrawal"]
 comments: false
 ---
 

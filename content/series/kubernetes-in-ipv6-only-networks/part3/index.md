@@ -3,7 +3,6 @@ title: "IPv6 Only Kubernetes with Cilium: What to Know Before Production"
 date: 2025-11-01
 lastmod: 2025-11-01
 tags: ["IPv6", "Cilium", "Kubernetes"]
-authors: ["Kapil Agrawal"]
 comments: false
 series: ["Kubernetes in IPv6 only networks"]
 series_order: 3

@@ -2,7 +2,6 @@
 title: Kubernetes with IPv6 on MacOS
 date: 2025-08-13
 tags: ["Kubernetes", "IPv6", "Cilium"]
-authors: ["Kapil Agrawal"]
 comments: false
 ---
 

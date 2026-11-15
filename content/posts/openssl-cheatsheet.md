@@ -2,7 +2,6 @@
 title: OpenSSL quick cheatsheet
 date: 2025-03-16
 tags: ["Security"]
-author: "Kapil Agrawal"
 comments: false
 ---
 

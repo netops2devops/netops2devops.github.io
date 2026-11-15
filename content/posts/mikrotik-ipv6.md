@@ -2,7 +2,6 @@
 title: IPv6 prefix delegation on Mikrotik
 date: 2025-01-01
 tags: ["IPv6","Networking"]
-author: "Kapil Agrawal"
 comments: false
 ---
 

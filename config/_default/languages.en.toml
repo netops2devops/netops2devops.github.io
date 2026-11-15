@@ -1,27 +1,28 @@
 disabled = false
-locale = "en"
-label = "English"
-weight = 1
-title = "netops2devops"
+locale   = "en"
+label    = "English"
+weight   = 1
+title    = "netops2devops"
 
 [params]
 displayName = "EN"
-isoCode = "en"
-rtl = false
-dateFormat = "January 2 2006"
-#logo = "img/logo.png"
+isoCode     = "en"
+rtl         = false
+dateFormat  = "January 2 2006"
+logo        = "img/logo-light.png"
 #secondaryLogo = "img/logo.png"
 #description = "All things networking, systems, software and security"
 copyright = "Copy, _right?_ :thinking_face:"
 
 [params.author]
-name = "netops2devops"
-image = "img/logo.png"
+name = "Kapil Agrawal"
+image = "img/ciliumcon.jpeg"
+articleImage = "img/self.jpeg" # author box on posts; falls back to image
 imageQuality = 90
 headline = "All things networking, systems, software and security"
 links = [
-  { github = "https://github.com/netops2devops" },
-  { linkedin = "https://linkedin.com/in/netops2devops" },
-  { bluesky = "https://bsky.app/profile/netops2devops.net" },
-  { codeberg = "https://codeberg.org/netops2devops"}
+{ github = "https://github.com/netops2devops" },
+{ linkedin = "https://linkedin.com/in/netops2devops" },
+{ bluesky = "https://bsky.app/profile/netops2devops.net" },
+{ codeberg = "https://codeberg.org/netops2devops" },
 ]
